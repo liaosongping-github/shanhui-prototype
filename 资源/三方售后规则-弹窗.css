@@ -1,0 +1,146 @@
+#status .filter-picker-trigger:not(.has-value) .filter-picker-value { font-size: 0; }
+#status .filter-picker-trigger:not(.has-value) .filter-picker-value::after {
+  content: '请选择状态';
+  font-size: 12px;
+}
+#status .filter-picker-panel { width: 100%; min-width: 0; }
+#status .filter-picker-option[aria-pressed="true"] { font-weight: 600; }
+
+.rule-channel-picker { position: relative; }
+.rule-channel-trigger {
+  width: 100%;
+  height: 32px;
+  padding: 0 15px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #70757d;
+  background: white;
+  border: 1px solid #d9dde5;
+}
+.rule-channel-trigger.has-value { color: #606266; }
+.rule-channel-trigger[aria-expanded="true"] { border-color: #409eff; }
+.rule-query .rule-channel-trigger { height: 28px; font-size: 12px; }
+.rule-channel-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 6;
+  width: min(375px, calc(100vw - 48px));
+  height: 337px;
+  padding: 15px;
+  background: white;
+  border: 1px solid #d1d4d9;
+  box-shadow: 0 2px 8px #25364f16;
+  white-space: normal;
+  overflow: auto;
+}
+.rule-query .rule-channel-panel { left: -86px; }
+@container (max-width: 780px) {
+  .rule-query .rule-channel-panel { left: 0; }
+}
+.rule-channel-search, .rule-channel-option { display: flex; align-items: center; }
+.rule-channel-search input { flex: 1; width: 100%; height: 28px; }
+.rule-channel-panel button { height: 28px; padding: 0 15px; font-size: 12px; }
+.rule-channel-results { margin-top: 20px; }
+.rule-channel-option { gap: 4px; min-height: 43px; padding-left: 24px; position: relative; }
+.rule-channel-panel .rule-channel-expand {
+  position: absolute;
+  left: 0;
+  padding: 0 8px;
+  background: transparent;
+  color: #909399;
+}
+.rule-channel-note { margin-left: 24px; font-size: 12px; color: #70757d; }
+.rule-status.is-inactive { color: #686d76; border-color: #dce0e6; background: #f4f5f7; }
+
+.prototype-modal.rule-modal {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-height: calc(100% - 20px);
+  max-width: calc(100% - 24px);
+  border: 0;
+  border-radius: 2px;
+}
+.rule-modal .prototype-modal-body { max-height: none; min-height: 0; }
+.rule-modal .prototype-modal-footer { padding: 16px 20px 15px; gap: 10px; }
+.rule-modal .prototype-modal-footer[hidden] { display: none; }
+.rule-modal .prototype-modal-footer button { min-height: 28px; }
+.rule-modal .prototype-modal-footer .green { order: 1; background: #409eff; }
+.rule-modal .prototype-modal-footer .gray {
+  background: white;
+  border: 1px solid #d9dde5;
+  color: #606266;
+}
+.rule-modal .prototype-modal-footer::before {
+  content: '';
+  flex: 1 0 100%;
+  border-top: 1px solid var(--line);
+  margin-bottom: 2px;
+}
+.rule-modal .prototype-modal-footer { flex-wrap: wrap; }
+
+.rule-editor-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 310px);
+  gap: 20px 18px;
+  margin: 0 0 32px;
+}
+.rule-editor-field { display: grid; grid-template-columns: 90px minmax(0, 1fr); align-items: start; gap: 10px; }
+.rule-editor-field > span { text-align: right; padding-top: 7px; }
+.rule-required::before { content: '*'; color: #f56c6c; margin-right: 4px; }
+.rule-editor-fields :is(select, input[type="number"]) { height: 32px; }
+.rule-hours { align-items: center; }
+.rule-hours > span { padding-top: 0; }
+.rule-hours > div { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.rule-hour-start, .rule-hours input { width: 100px; flex-shrink: 0; }
+.rule-hour-start .filter-picker-trigger { min-height: 32px; padding-inline: 12px; }
+.rule-hour-start .filter-picker-clear { display: none; }
+.rule-hour-start .filter-picker:has(.filter-picker-clear:not([hidden])) .filter-picker-value { padding-right: 0; }
+.rule-hour-start .filter-picker-panel { width: 100%; min-width: 0; }
+.rule-hour-start .filter-picker-option[aria-pressed="true"] { font-weight: 600; }
+.rule-hours input { text-align: center; }
+.rule-editor-status { display: flex; gap: 20px; align-items: center; align-self: center; padding: 0; border: 0; margin: 0; }
+.rule-editor-status legend { float: left; padding: 0; margin-right: 12px; margin-left: 68px; }
+.rule-editor-status label { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.rule-editor-status input { height: auto; margin: 0; accent-color: #409eff; }
+.rule-editor-status label:has(:checked) { color: #409eff; }
+.rule-editor-actions { display: flex; gap: 10px; margin-bottom: 12px; }
+.rule-editor-actions span { display: inline-flex; }
+.rule-editor-actions button { padding: 0 15px; height: 28px; font-size: 12px; }
+.rule-editor-actions .gray { border-radius: 3px 0 0 3px; }
+.rule-editor-actions .white { border-radius: 0 3px 3px 0; }
+.rule-items-scroll { overflow: auto; }
+.rule-items { width: 100%; min-width: 590px; table-layout: fixed; font-size: 12px; }
+.rule-items :is(th, td) { height: 40px; padding: 8px 10px; }
+.rule-items td { white-space: normal; overflow-wrap: anywhere; }
+.rule-items th:nth-child(2) { width: 15%; }
+.rule-items th:nth-child(5) { width: 60px; }
+.rule-items:has(th:nth-child(5)) th:first-child { width: 32%; }
+.rule-items input, .rule-items select { width: 100%; height: 28px; padding: 0 10px; }
+.rule-items .rule-items-empty { text-align: center; height: 60px; color: #909399; }
+.rule-add-item {
+  width: 100%;
+  min-height: 45px;
+  border: 1px dashed #d9dde5;
+  border-top: 0;
+  border-radius: 0;
+  color: #217ac1;
+  background: white;
+  font-size: 12px;
+}
+.rule-add-item:hover { background: #f3f8fe; }
+.rule-facts { display: flex; flex-wrap: wrap; justify-content: space-evenly; gap: 12px 24px; margin: 0 0 30px; }
+.rule-facts div { display: flex; gap: 12px; }
+.rule-facts dd { margin: 0; overflow-wrap: anywhere; }
+.rule-detail-modal .prototype-modal-body { padding-bottom: 30px; }
+
+@media (max-width: 740px) {
+  .rule-editor-fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .rule-hour-start, .rule-hours input { width: min(100px, 36%); }
+  .rule-hour-start .filter-picker-trigger { padding-inline: 6px; gap: 4px; }
+  .rule-editor-status legend { margin-left: 0; }
+  .rule-modal .rule-channel-panel { width: min(375px, calc(100vw - 174px)); }
+}

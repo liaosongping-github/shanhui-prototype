@@ -1,0 +1,9 @@
+.accountability-options { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin: 8px 0 18px; }
+.accountability-options label { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; font-size: 14px; line-height: 18px; }
+.accountability-options input { appearance: none; margin: 0; padding: 0; width: 14px; height: 14px; border: 1px solid #dcdfe6; border-radius: 2px; flex: none; }
+.accountability-options input:checked { background: #209eff; border-color: #209eff; }
+.accountability-options input:checked::after { content: '✓'; display: block; color: white; font-size: 12px; line-height: 12px; text-align: center; }
+.accountability-options label:has(input:disabled) { color: #c0c4cc; font-weight: 600; cursor: not-allowed; }
+.accountability-options input:disabled { background: #edf2fc; }
+.accountability-remark { display: block; font-size: 14px; }
+.accountability-remark textarea { display: block; margin-top: 4px; width: 100%; min-height: 48px; padding: 6px 10px; resize: vertical; border: 1px solid #dcdfe6; border-radius: 4px; font: inherit; color: #606266; }

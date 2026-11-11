@@ -1,0 +1,120 @@
+.filter-picker {
+  position: relative;
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.filter-picker-trigger {
+  grid-area: 1 / 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  min-width: 0;
+  padding: 5px 10px;
+  border: 1px solid #d9dde5;
+  background: white;
+  color: #a2a9b5;
+  text-align: left;
+}
+
+.filter-picker-trigger[aria-expanded="true"] { border-color: var(--primary); }
+.filter-picker-trigger.has-value, .filter-date-picker .filter-picker-trigger { color: var(--text); }
+.filter-picker-value { overflow: hidden; text-overflow: ellipsis; }
+.filter-picker-icon { margin-left: auto; color: #a2a9b5; }
+.filter-picker-trigger[aria-expanded="true"] .filter-picker-icon { transform: rotate(180deg); }
+.filter-date-picker .filter-picker-trigger { flex-direction: row-reverse; justify-content: flex-end; }
+.filter-date-picker .filter-picker-icon { margin-left: 0; }
+.filter-date-picker .filter-picker-trigger[aria-expanded="true"] .filter-picker-icon { transform: none; }
+
+.filter-picker-clear {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #b4bcc7;
+  color: white;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  line-height: 16px;
+}
+
+.filter-picker:has(.filter-picker-clear:not([hidden])) .filter-picker-value { padding-right: 20px; }
+.filter-picker-summary {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-right: 24px;
+  padding: 5px 8px;
+  pointer-events: none;
+}
+
+.filter-picker-tag {
+  max-width: 100%;
+  padding: 2px 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #687587;
+  background: #eef1f5;
+  font-size: 12px;
+  pointer-events: auto;
+}
+
+.filter-picker-panel {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 8px);
+  left: 0;
+  width: max(100%, 180px);
+  max-height: 255px;
+  overflow: auto;
+  padding: 5px 0;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 3px 13px #25364f26;
+}
+
+.filter-field:last-child .filter-picker-panel { left: auto; right: 0; }
+.filter-picker-option, .filter-tree-toggle, .filter-calendar button {
+  padding: 8px 12px;
+  background: white;
+  color: var(--text);
+}
+
+.filter-picker-option {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  white-space: normal;
+}
+
+.filter-picker-option:hover, .filter-tree-toggle:hover, .filter-calendar button:hover { background: #f2f5f8; }
+.filter-picker-option[aria-pressed="true"], .filter-calendar .today { color: var(--primary); font-weight: bold; }
+.filter-picker-option[aria-pressed="true"]::after { content: '✓'; }
+.filter-picker-footer { padding: 3px 5px; }
+.toolbar .push-picker { flex: 0 0 208px; }
+.toolbar .push-picker .filter-picker-trigger { padding: 5px 10px; font-weight: normal; }
+.toolbar .push-picker .filter-picker-tag { padding: 2px 5px; font-size: 12px; font-weight: normal; }
+.toolbar .push-picker .filter-picker-option[aria-pressed="false"] { font-weight: normal; }
+.filter-tree-panel { width: max(100%, 270px); }
+.filter-tree-row { display: flex; align-items: center; }
+.filter-tree-toggle { padding: 6px; color: #9aa5b4; }
+.filter-tree-branch { padding-left: 16px; }
+.filter-tree-pending { padding: 6px 12px; color: #8b919b; font-size: 12px; }
+.filter-calendar { width: max(100%, 310px); max-height: none; padding: 10px; }
+.filter-calendar-header { display: flex; align-items: center; justify-content: space-between; }
+.filter-calendar-header button { padding: 6px; }
+.filter-calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; }
+.filter-calendar-weekday { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.filter-calendar-grid button { padding: 8px 2px; font-size: 13px; }
+.filter-calendar .other-month { color: #a6afbd; }
+.filter-calendar button[aria-pressed="true"] { background: var(--primary); color: white; }

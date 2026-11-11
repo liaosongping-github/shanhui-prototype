@@ -1,0 +1,10 @@
+.prototype-modal { margin: 15vh auto 0; padding: 0; max-width: calc(100vw - 40px); max-height: 80vh; border: 1px solid #888; border-radius: 2px; color: #606266; box-shadow: 0 2px 8px #0003; }
+.prototype-modal::backdrop { background: #0008; }
+.prototype-modal-head { display: flex; align-items: center; justify-content: space-between; padding: 20px; }
+.prototype-modal-head h2 { font-size: 18px; font-weight: 400; margin: 0; color: #303133; }
+.prototype-modal-close { background: transparent; color: #909399; font-size: 22px; padding: 0; width: 24px; height: 24px; line-height: 24px; }
+.prototype-modal-body { padding: 10px 20px 0; overflow: auto; max-height: calc(80vh - 150px); }
+.prototype-modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 38px 20px 32px; }
+.prototype-modal-footer button { padding: 7px 16px; font-size: 12px; border-radius: 2px; }
+.prototype-modal-feedback { font-size: 13px; color: #986b1b; margin: 12px 0 0; }
+@media(max-height:550px) { .prototype-modal { margin-top: 5vh; max-height: 90vh; } .prototype-modal-body { max-height: calc(90vh - 150px); } }

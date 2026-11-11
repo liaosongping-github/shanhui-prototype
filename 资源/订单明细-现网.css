@@ -1,0 +1,23 @@
+.order-detail { box-sizing:border-box; position:fixed; inset:0; width:100vw; height:100vh; max-width:none; max-height:none; margin:0; padding:0; border:0; background:#fff; color:#606266; overflow:auto; font-size:13px; }
+.order-detail::backdrop { background:#0006; }
+.order-detail-header { display:flex; justify-content:space-between; align-items:center; padding:20px; }
+.order-detail-header h2 { margin:0; font-size:18px; font-weight:400; }
+.order-detail-header > button { background:transparent;color:#909399;font-size:24px;padding:0 8px; }
+.order-detail-content { padding:0 32px 60px; }
+.detail-breadcrumb { padding:16px 0 26px;color:#909399; }
+.detail-favorite { background:transparent;color:#409eff;padding:0;font-size:12px; }
+.detail-actions { background:#e5e9f2; padding:16px;min-height:72px;box-sizing:border-box;display:flex;gap:12px;align-items:flex-start; }
+.order-detail button { font-size:12px; }
+.detail-rules { margin-top:16px;padding:20px;box-shadow:0 2px 12px #0002;border:1px solid #ebeef5;border-radius:3px; }
+.detail-rules h3 { margin:0 0 18px;font-size:14px; }
+.detail-rules p { margin:16px 0; }.detail-supported { color:#67c23a;margin-left:12px; }
+.detail-tools { display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin:4px 14px 10px; }
+.detail-tools button { padding:7px 12px; }
+.detail-info { margin:0 14px;background:#f4f4f5;padding:16px 22px;color:#7e8995; }
+.detail-info-group { display:flex;margin-bottom:22px; }.detail-info-group:last-child { margin-bottom:0; }
+.detail-group-name { flex:0 0 78px; }.detail-info-grid { display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;width:100%; }
+.detail-field { display:flex;gap:8px;min-height:27px;line-height:1.6;overflow-wrap:anywhere; }.detail-field>span:first-child { flex-shrink:0;max-width:90px; }
+.detail-link { padding:0!important;background:transparent;color:#607d8b;text-decoration:underline; }
+.detail-section { margin:0 14px;border-bottom:1px solid #e6ebf5; }.detail-section summary { list-style:none;cursor:pointer;padding:17px 4px;font-weight:600; }.detail-section summary::after { content:'›';float:right;color:#909399; }.detail-section[open] summary::after { content:'⌄'; }.detail-section p { padding:0 16px 16px;color:#909399; }
+@media(max-width:1000px) { .detail-info-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }.order-detail-content { padding:0 20px 40px; } }
+@media(max-width:600px) { .detail-info-grid { grid-template-columns:1fr; }.detail-info-group { display:block; }.detail-group-name { margin-bottom:12px; } }

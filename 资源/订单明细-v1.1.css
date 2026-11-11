@@ -1,0 +1,35 @@
+.detail-actions + .detail-breadcrumb { padding-bottom: 8px; }
+
+.detail-rules-example {
+  margin-top: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 0;
+  background: #f0f0f0;
+  box-shadow: none;
+  color: #303133;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.detail-rules-heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 6px;
+}
+
+.detail-rules-heading h3 { margin: 0; font-size: inherit; }
+.detail-rules-link { padding: 0; background: transparent; color: #217ac1; }
+.detail-rules-link:hover { text-decoration: underline; }
+.detail-rules-example p { margin: 2px 0; }
+.detail-rules-deadline { display: inline-block; margin-left: 12px; }
+.detail-rules-exceeded { color: #d52229; }
+.detail-rules-example .detail-supported { color: #33851d; margin-left: 0; }
+.detail-rules-description { margin-top: 8px; }
+.detail-rules-description ol { margin: 0 0 6px; padding-left: 1.5em; }
+
+@media (max-width: 600px) {
+  .detail-rules-deadline { display: block; margin-left: 0; }
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>三方售后规则 · 现网复刻</title>
+  <link rel="stylesheet" href="../设计规范/基础样式-v1.css">
+  <link rel="stylesheet" href="../通用组件/筛选控件-v1.css">
+  <link rel="stylesheet" href="../通用组件/原型导航-v1.css">
+  <link rel="stylesheet" href="../通用组件/弹窗-v2.css">
+  <link rel="stylesheet" href="../资源/三方售后规则-现网.css">
+  <link rel="stylesheet" href="../资源/三方售后规则-弹窗.css">
+</head>
+<body>
+  <header class="rule-toolbar" id="rule-toolbar" hidden>
+    <h1>三方售后规则</h1>
+    <select aria-label="选择页面版本"><option>现网页面</option></select>
+  </header>
+  <div class="shell">
+    <aside id="boss-sidebar" data-prototype-navigation></aside>
+    <main class="boss-main">
+      <header class="boss-top">
+        <div class="boss-home">
+          <button class="boss-sidebar-toggle" id="boss-sidebar-toggle" type="button"
+            aria-controls="boss-sidebar" aria-expanded="true" aria-label="收起侧栏">☰</button>
+          <span>首页</span>
+        </div>
+        <input type="search" aria-label="全局搜索（待核对）" placeholder="请输入搜索内容" disabled>
+        <nav class="boss-shortcuts" aria-label="快捷入口"></nav>
+        <div class="boss-top-menus">
+          <button type="button" data-pending="单位切换">当前单位: 演示单位 ▾</button>
+          <button type="button" data-pending="账号菜单">演示用户 ▾</button>
+        </div>
+      </header>
+      <div class="rule-content">
+        <div class="breadcrumb">
+          回收业务 &gt; <strong>三方售后规则</strong>
+          <button type="button" class="rule-link" id="favorite" aria-pressed="false">☆ 收藏</button>
+        </div>
+        <section class="filters" aria-label="筛选三方售后规则">
+          <form id="query-form" class="rule-query">
+            <div class="rule-field">厂商 <div id="vendor-picker"></div></div>
+            <div class="rule-field">对应渠道 <div id="channel"></div></div>
+            <div class="rule-field">状态 <div id="status"></div></div>
+            <div class="rule-actions">
+              <button type="submit">搜索</button>
+              <button type="reset" class="white">重置</button>
+              <button type="button" class="green" id="add-rule">新增</button>
+            </div>
+          </form>
+        </section>
+        <section class="table-card" aria-label="三方售后规则列表（模拟数据）">
+          <div class="table-scroll" tabindex="0" role="region" aria-label="规则列表">
+            <table class="rule-table" aria-label="三方售后规则（模拟数据）">
+              <colgroup><col><col><col><col><col><col><col></colgroup>
+              <thead><tr>
+                <th scope="col">厂商</th>
+                <th scope="col">渠道</th>
+                <th scope="col">售后规则详情</th>
+                <th scope="col">状态</th>
+                <th scope="col">创建人</th>
+                <th scope="col">创建时间</th>
+                <th scope="col">操作</th>
+              </tr></thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+        </section>
+        <div class="pagination-bar">
+          <div id="pagination" class="prototype-pagination"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../资源/原型配置.js"></script>
+  <script src="../通用组件/原型导航-v1.js"></script>
+  <script src="../通用组件/筛选控件-v1.js"></script>
+  <script src="../通用组件/分页-v1.js"></script>
+  <script src="../通用组件/全局消息-v1.js"></script>
+  <script src="../通用组件/弹窗-v2.js"></script>
+  <script src="../资源/三方售后规则-渠道.js"></script>
+  <script src="../资源/三方售后规则-弹窗.js"></script>
+  <script src="../资源/三方售后规则-现网.js"></script>
+</body>
+</html>
