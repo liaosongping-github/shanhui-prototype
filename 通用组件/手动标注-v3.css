@@ -1,0 +1,23 @@
+body [data-change]{outline:none!important}.review-marker{background:#d92d20!important}.manual-layer{position:fixed;inset:0;pointer-events:none;z-index:10000;overflow:hidden}.manual-box{position:absolute;border:2px dashed #d92d20;pointer-events:none;min-width:8px;min-height:8px}.manual-label{position:absolute;left:0;top:-24px;background:#d92d20!important;color:white!important;padding:2px 6px!important;min-height:20px;pointer-events:auto;font-size:12px!important}.manual-movable{pointer-events:auto;cursor:move}.manual-handle{position:absolute;right:-5px;bottom:-5px;width:10px;height:10px;background:#d92d20;cursor:nwse-resize;pointer-events:auto}.manual-collapse{align-self:flex-end;background:white;color:#475363;padding:4px 8px}.review-notes-content article>button{margin:4px;padding:4px 8px}.review-notes-content{overflow:auto}.review-layout{min-height:100vh}.review-bar[hidden]{display:none}.review-notes{max-height:100vh}.review-notes-collapsed{flex-basis:40px;padding:4px}.review-notes-collapsed .review-notes-content{display:none}dialog .manual-layer{position:fixed}.manual-label:focus-visible{outline:2px solid #2196f3;outline-offset:2px}
+
+.manual-delete{position:absolute;right:-2px;top:-24px;width:22px;height:22px;padding:0!important;background:#d92d20!important;color:#fff!important;pointer-events:auto;cursor:pointer;font-size:18px!important;line-height:22px}.manual-delete:focus-visible{outline:2px solid #2196f3;outline-offset:2px}
+
+.manual-number-input{position:absolute;left:0;top:-28px;width:88px!important;height:26px;padding:2px 4px!important;border:2px solid #d92d20!important;background:white;color:#d92d20;pointer-events:auto;z-index:1}.manual-number-input[aria-invalid=true]{outline:2px solid #d92d20}
+
+/* 原型在左、说明在右，两列分别滚动；不改变已有元素路径。 */
+body.manual-review-page{height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.manual-review-page>.review-bar{flex:none}
+.manual-review-page>.review-layout{flex:1;min-height:0;overflow:hidden;align-items:stretch}
+.manual-review-page .review-current{min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.manual-review-page .review-current>.shell{min-height:100%}
+.manual-review-page .prototype-navigation{height:var(--review-viewport-height,100vh)}
+.manual-review-page .review-notes{position:relative;top:auto;max-height:none;min-height:0;overflow:visible}
+.manual-review-page .review-notes-collapsed{flex:0 0 0;padding:0}
+.manual-review-page .manual-collapse{position:absolute;left:calc(-24px - var(--prototype-scrollbar-width,17px));top:50%;transform:translateY(-50%);z-index:10001;display:grid;place-items:center;width:24px;height:36px;padding:0;border:1px solid #c8def099;border-radius:10px 0 0 10px;background:rgba(255,255,255,.72);color:#2289d5;box-shadow:0 2px 8px #25496818;cursor:pointer;transition:background .15s,color .15s,box-shadow .15s}
+.manual-review-page .manual-collapse::before{content:'';width:8px;height:8px;border:solid currentColor;border-width:2px 2px 0 0;transform:rotate(45deg);margin-left:-4px}
+.manual-review-page .manual-collapse[aria-expanded=false]::before{transform:rotate(-135deg);margin-left:4px}
+.manual-review-page .manual-collapse:hover{background:rgba(234,245,255,.9);color:#0875c8;box-shadow:0 3px 10px #1976bd24}
+.manual-review-page .manual-collapse:active{background:rgba(220,237,255,.95)}
+.manual-review-page .manual-collapse:focus-visible{outline:2px solid #2196f3;outline-offset:2px}
+.manual-review-page .review-notes-content{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.manual-review-page .review-current:focus-visible,.manual-review-page .review-notes-content:focus-visible{outline:2px solid #2196f3;outline-offset:-2px}

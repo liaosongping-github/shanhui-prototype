@@ -15,24 +15,12 @@
     .review-comparing #boss-sidebar-toggle { display: none; }
     .review-current .rule-content .filters { position: relative; z-index: 1; }
   </style>
-</head>
+<link rel="stylesheet" href="../通用组件/手动标注-v3.css"><link rel="stylesheet" href="../通用组件/业务顶栏-v1.css"></head>
 <body>
   <div class="shell">
     <aside id="boss-sidebar" data-prototype-navigation></aside>
     <main class="boss-main">
-      <header class="boss-top">
-        <div class="boss-home">
-          <button class="boss-sidebar-toggle" id="boss-sidebar-toggle" type="button"
-            aria-controls="boss-sidebar" aria-expanded="true" aria-label="收起侧栏">☰</button>
-          <span>首页</span>
-        </div>
-        <input type="search" aria-label="全局搜索（待核对）" placeholder="请输入搜索内容" disabled>
-        <nav class="boss-shortcuts" aria-label="快捷入口"></nav>
-        <div class="boss-top-menus">
-          <button type="button" data-pending="单位切换">当前单位: 演示单位 ▾</button>
-          <button type="button" data-pending="账号菜单">演示用户 ▾</button>
-        </div>
-      </header>
+      <header class="boss-top"></header>
       <div class="rule-content">
         <div class="breadcrumb">
           回收业务 &gt; <strong data-change="C01">三方售后规则</strong>
@@ -73,8 +61,8 @@
       </div>
     </main>
   </div>
-  <script src="../资源/原型配置.js"></script>
-  <script src="../通用组件/原型导航-v1.js"></script>
+  <script src="../通用组件/业务顶栏-v1.js"></script><script src="../资源/原型配置.js"></script>
+  <script src="../通用组件/原型导航-v2.js"></script>
   <script src="../通用组件/筛选控件-v1.js"></script>
   <script src="../通用组件/分页-v1.js"></script>
   <script src="../通用组件/全局消息-v1.js"></script>
@@ -83,6 +71,6 @@
   <script src="../资源/三方售后规则-v1.1-弹窗.js"></script>
   <script src="../资源/三方售后规则-v1.1-现网.js"></script>
   <script src="../资源/三方售后规则-v1.1-改动说明.js"></script>
-  <script src="../通用组件/改动评审-v2.js"></script>
+  <script src="../资源/原型标注.js"></script><script src="../通用组件/图文编辑-v3.js"></script><script src="../通用组件/标注存储-v1.js"></script><script src="../通用组件/手动标注-v3.js"></script>
 </body>
 </html>

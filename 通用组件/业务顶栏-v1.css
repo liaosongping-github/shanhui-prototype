@@ -1,0 +1,10 @@
+.prototype-business-header{background:#363e42;color:#fff;min-height:60px;gap:12px;padding:0 14px;display:flex;align-items:center}
+.prototype-business-header .boss-top-menus{margin-left:auto;flex-shrink:0;gap:8px}
+.prototype-business-header .boss-top-menus summary{background:transparent;color:#fff;font-size:12px;font-weight:600;padding:8px 6px;white-space:nowrap}
+.prototype-business-header .boss-top-menus summary::after{margin-left:6px}
+.prototype-business-header .boss-top-menus summary:hover,.prototype-business-header .boss-menu[open]>summary{background:#ffffff12}
+.prototype-business-header .boss-shortcuts button{background:transparent;color:#fff;font-size:12px}
+.prototype-business-header .boss-menu-panel button{background:#fff;color:#6c7076;font-size:13px}
+.prototype-business-header .boss-menu-panel button:hover{background:#edf6ff;color:#209eff}
+.prototype-business-header .boss-shortcuts{order:0;width:auto;flex-wrap:wrap}
+@media(max-width:1380px){.prototype-business-header{flex-wrap:wrap;padding-block:6px}.prototype-business-header .boss-shortcuts{order:1;width:100%}}
