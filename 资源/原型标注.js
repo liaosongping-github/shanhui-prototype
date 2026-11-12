@@ -66,6 +66,17 @@ window.prototypeAnnotations = {
           "w": 1.2767857142857142,
           "h": 1.3134328358208955
         }
+      },
+      {
+        "uid": "c7c5e644-45e0-4cf5-a6d2-e51c9dc66336",
+        "id": "d",
+        "anchor": "#toolbar > button:nth-of-type(12)",
+        "rect": {
+          "x": -0.0426189005558987,
+          "y": -0.06578947368421052,
+          "w": 1.1002676549310273,
+          "h": 1.0394736842105263
+        }
       }
     ],
     "cards": [
@@ -82,6 +93,16 @@ window.prototypeAnnotations = {
       {
         "uid": "51c959d6-b880-4f8f-a334-31396cbccaf7",
         "id": "3",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "59ebd1b9-7915-4d49-af2f-3fbcd41cbbee",
+        "id": "x",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "7a3875a2-c6c0-41ce-afd5-c6303493e658",
+        "id": "d",
         "content": "<p></p>"
       }
     ]
