@@ -17,6 +17,10 @@
   const visibilityKey='prototype-annotation-visible:'+ctx.root.href;
   try{visible=localStorage.getItem(visibilityKey)!=='false';}catch{}
   if(hosted)visible=new URLSearchParams(location.search).get('annotations')!=='false';
+  const notesExpandedKey='prototype-notes-expanded:'+ctx.root.href;
+  let notesExpanded=true;
+  try{notesExpanded=localStorage.getItem(notesExpandedKey)!=='false';}catch{}
+  if(hosted)notesExpanded=new URLSearchParams(location.search).get('notesExpanded')!=='false';
   let warning='';
   if(session){
     try{const saved=await store.read(key);data=normalize(saved.data);baseRevision=saved.revision;}
@@ -43,10 +47,10 @@
   const bar=document.createElement('div');bar.className='review-bar';bar.hidden=hosted;document.body.prepend(bar);
   const button=(label,action)=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=action;return b;};
   const edit=button('编辑标注',()=>command('edit')),toggle=button('隐藏改动标注',()=>command('annotations'));
-  const title=document.createElement('strong');title.textContent=ctx.page.name+' · '+ctx.version.id.toUpperCase();bar.append(title);
-  if(!ctx.review){const select=document.createElement('select');select.setAttribute('aria-label','选择迭代版本');select.replaceChildren(new Option('全部（各页最新版）','all'),...window.prototypeConfig.releases.map(id=>new Option(id.toUpperCase(),id)));select.value=ctx.release;select.onchange=()=>{const u=new URL('index.html',ctx.root);u.searchParams.set('release',select.value);u.searchParams.set('page',ctx.page.id);location.href=u;};bar.append(select);}
+  const title=document.createElement('strong');title.textContent=ctx.page.name+' · '+(window.prototypeConfig.releaseNames?.[ctx.version.id]||ctx.version.id.toUpperCase());bar.append(title);
+  if(!ctx.review){const select=document.createElement('select');select.setAttribute('aria-label','选择迭代版本');select.replaceChildren(new Option('全部（各页最新版）','all'),...window.prototypeConfig.releases.map(id=>new Option(window.prototypeConfig.releaseNames?.[id]||id.toUpperCase(),id)));select.value=ctx.release;select.onchange=()=>{const u=new URL('index.html',ctx.root);u.searchParams.set('release',select.value);u.searchParams.set('page',ctx.page.id);location.href=u;};bar.append(select);}
   bar.append(toggle);if(!ctx.review)bar.append(edit);
-  function report(notice=''){edit.textContent=saving?'正在保存…':editing?'保存标注到项目':'编辑标注';edit.disabled=saving;toggle.textContent=visible?'隐藏改动标注':'显示改动标注';if(hosted)parent.postMessage({type:'prototype-v3-state',editing,annotations:visible,notice,dirty,saving},'*');else if(notice)alert(notice);}
+  function report(notice=''){edit.textContent=saving?'正在保存…':editing?'保存标注到项目':'编辑标注';edit.disabled=saving;toggle.textContent=visible?'隐藏改动标注':'显示改动标注';if(hosted)parent.postMessage({type:'prototype-v3-state',editing,annotations:visible,notesExpanded,notice,dirty,saving},'*');else if(notice)alert(notice);}
   function persist(){
     dirty=true;editing=true;
     const draft={boxes:items.filter(i=>i.id),cards};
@@ -56,8 +60,8 @@
     return true;
   }
   const editor=window.createPrototypeEditor(()=>{editing=true;const ok=persist();report('描述已暂存，请点击“保存标注到项目”。');return ok;});
-  function expanded(value){content.hidden=!value;resize.hidden=!value;notes.classList.toggle('review-notes-collapsed',!value);collapse.title=value?'收起说明':'展开说明';collapse.setAttribute('aria-label',collapse.title);collapse.setAttribute('aria-expanded',String(value));}
-  collapse.onclick=()=>{expanded(content.hidden);paint();};expanded(true);
+  function expanded(value,remember=true){notesExpanded=value;content.hidden=!value;resize.hidden=!value;notes.classList.toggle('review-notes-collapsed',!value);collapse.title=value?'收起说明':'展开说明';collapse.setAttribute('aria-label',collapse.title);collapse.setAttribute('aria-expanded',String(value));if(remember){try{localStorage.setItem(notesExpandedKey,String(value));}catch{}report();}}
+  collapse.onclick=()=>{expanded(content.hidden);paint();};expanded(notesExpanded,false);
   let width=320;function setWidth(n){width=Math.max(220,Math.min(680,innerWidth*.45,n));notes.style.setProperty('--review-notes-width',width+'px');resize.setAttribute('aria-valuenow',width);}
   setWidth(width);resize.onkeydown=e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();setWidth(width+(e.key==='ArrowLeft'?20:-20));paint();}};
   resize.onpointerdown=e=>{e.preventDefault();const x=e.clientX,w=width;resize.setPointerCapture(e.pointerId);resize.onpointermove=m=>{setWidth(w+x-m.clientX);paint();};resize.onpointerup=()=>resize.onpointermove=null;};

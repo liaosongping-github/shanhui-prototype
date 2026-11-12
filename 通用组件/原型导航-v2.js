@@ -11,7 +11,7 @@
       for(const page of config.pages.filter(p=>p.group===group)){
         const v=release==='all'?config.releases.slice().reverse().map(id=>page.versions.find(v=>v.id===id)).find(Boolean):page.versions.find(v=>v.id===release);if(!v)continue;
         const url=new URL('index.html',root);url.searchParams.set('release',release);url.searchParams.set('page',page.id);if(review)url.searchParams.set('mode','review');
-        const link=document.createElement('a');link.href=url.href;link.target='_top';link.className='prototype-page-link';link.textContent=page.name+' · '+v.id.toUpperCase();if(page===current)link.setAttribute('aria-current','page');section.append(link);
+        const link=document.createElement('a');link.href=url.href;link.target='_top';link.className='prototype-page-link';link.textContent=page.name+' · '+(config.releaseNames?.[v.id]||v.id.toUpperCase());if(page===current)link.setAttribute('aria-current','page');section.append(link);
       }if(section.children.length>1)host.append(section);
     }
   }
