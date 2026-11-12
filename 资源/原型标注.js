@@ -4,12 +4,12 @@ window.prototypeAnnotations = {
       {
         "uid": "0caad756-6af9-40a1-82b5-8c3b27557a7e",
         "id": "1",
-        "anchor": "body > div:nth-of-type(2) > section:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > section:nth-of-type(1)",
+        "anchor": "#batch-push",
         "rect": {
-          "x": 0.7237369687249399,
-          "y": 0.8361445783132531,
-          "w": 0.07858861267040898,
-          "h": 0.11204819277108434
+          "x": -0.07,
+          "y": -0.1,
+          "w": 1.14,
+          "h": 1.2
         }
       },
       {
@@ -58,7 +58,7 @@ window.prototypeAnnotations = {
       },
       {
         "uid": "40991338-32b7-44e5-93cd-ee6f04a3f773",
-        "id": "4",
+        "id": "3",
         "anchor": "body > dialog:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > button:nth-of-type(3)",
         "rect": {
           "x": -0.08035714285714286,
@@ -72,6 +72,16 @@ window.prototypeAnnotations = {
       {
         "uid": "f729f6a7-cdcc-437f-b9de-8546a02861f6",
         "id": "4",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "51d07cd8-d634-476f-87aa-742140fd006a",
+        "id": "2",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "51c959d6-b880-4f8f-a334-31396cbccaf7",
+        "id": "3",
         "content": "<p></p>"
       }
     ]

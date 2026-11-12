@@ -130,6 +130,7 @@
     for(const el of layers.values())el.replaceChildren();
     if(!visible)return;
     for(const item of items){const el=target(item);if(!el||!el.getClientRects().length)continue;
+      watchAnchorLayout(item);
       const r=bounds(item),dialog=el.closest('dialog');if(!r||(dialog&&!dialog.open))continue;
       const layer=layerFor(dialog),base=layer.getBoundingClientRect(),box=document.createElement('div');box.className='manual-box';
       box.dataset.anchor=item.anchor;box.dataset.uid=item.uid;
@@ -178,6 +179,17 @@
   }
   let drawing=null,raf=0;
   function schedule(){if(drawing||raf)return;raf=requestAnimationFrame(()=>{raf=0;paint();});}
+  const anchorLayoutObserver=new ResizeObserver(schedule),watchedAnchors=new Set();
+  function watchAnchorLayout(item){
+    for(const target of document.querySelectorAll(item.anchor)){
+      for(let node=target;node&&node!==document.body;node=node.parentElement){
+        if(!watchedAnchors.has(node)){watchedAnchors.add(node);anchorLayoutObserver.observe(node);}
+      }
+    }
+    for(const node of watchedAnchors)if(!node.isConnected){anchorLayoutObserver.unobserve(node);watchedAnchors.delete(node);}
+  }
+  document.fonts?.ready.then(schedule);
+  document.fonts?.addEventListener('loadingdone',schedule);
   document.addEventListener('scroll',schedule,true);window.addEventListener('resize',()=>{setWidth(width);schedule();});
   const layoutObserver=new ResizeObserver(()=>{
     layout.style.setProperty('--review-viewport-height',layout.clientHeight+'px');
@@ -196,26 +208,31 @@
   document.addEventListener('pointercancel',()=>{pointerEditing=false;drawing?.draft.remove();drawing=null;schedule();},true);
   document.addEventListener('pointermove',e=>{if(!drawing)return;const d=drawing,b=d.layer.getBoundingClientRect();Object.assign(d.draft.style,{left:Math.min(d.x,e.clientX)-b.left+'px',top:Math.min(d.y,e.clientY)-b.top+'px',width:Math.abs(e.clientX-d.x)+'px',height:Math.abs(e.clientY-d.y)+'px'});},true);
   function anchorsInBox(root,x,y,w,h){
-    const candidates=selector=>Array.from(root.querySelectorAll(selector)).filter(el=>{
+    const candidates=(selector,allowPartial=false)=>Array.from(root.querySelectorAll(selector)).filter(el=>{
       if(el.closest('.manual-layer,.review-notes,[data-prototype-navigation]'))return false;
       const r=el.getBoundingClientRect();if(!r.width||!r.height)return false;
       const overlap=Math.max(0,Math.min(x+w,r.right)-Math.max(x,r.left))*Math.max(0,Math.min(y+h,r.bottom)-Math.max(y,r.top));
-      return overlap/(r.width*r.height)>=.6;
+      const coversControl=overlap/(r.width*r.height)>=.6;
+      const centerInside=x+w/2>=r.left&&x+w/2<=r.right&&y+h/2>=r.top&&y+h/2<=r.bottom;
+      return coversControl||(allowPartial&&centerInside&&overlap/(w*h)>=.5);
     });
     // 多个控件使用联合边界，不能退回不会随表格内容滚动的外壳。
-    const controls=candidates('button,a,input,select,textarea,[role="button"],[role="checkbox"]');
+    const controls=candidates('button,a,input,select,textarea,[role="button"],[role="checkbox"]',true);
     if(controls.length)return controls.filter(el=>!controls.some(other=>other!==el&&other.contains(el)));
     const cells=candidates('td,th');if(cells.length)return cells;
     // 文本/留白从框中心寻找内容锚点，避免起笔落在容器边缘导致绑定整页。
     const center=document.elementsFromPoint(x+w/2,y+h/2).find(el=>root.contains(el)&&!el.closest('.manual-layer,.review-notes')&&el!==root);
     if(center){const cell=center.closest('td,th');return [cell||center];}
-    return [root];
+    // 找不到内容时不再静默保存为整页百分比坐标。
+    return [];
   }
   document.addEventListener('pointerup',e=>{
     if(pointerEditing){requestAnimationFrame(()=>{pointerEditing=false;schedule();});return;}
     if(!drawing)return;e.preventDefault();e.stopImmediatePropagation();const d=drawing;drawing=null;d.draft.remove();
     const x=Math.min(d.x,e.clientX),y=Math.min(d.y,e.clientY),w=Math.abs(e.clientX-d.x),h=Math.abs(e.clientY-d.y);if(w<8||h<8)return;
-    const anchor=anchorsInBox(d.dialog||shell,x,y,w,h).map(selector).join(', ');
+    const anchors=anchorsInBox(d.dialog||shell,x,y,w,h);
+    if(!anchors.length){report('未识别到框选内容，请在要标注的页面内容上重新画框。');return;}
+    const anchor=anchors.map(selector).join(', ');
     const r=bounds({anchor});if(!r)return;
     const item={uid:crypto.randomUUID(),id:'',anchor,rect:{x:(x-r.left)/r.width,y:(y-r.top)/r.height,w:w/r.width,h:h/r.height}};items.push(item);renameBox(item);
 
