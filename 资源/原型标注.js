@@ -55,9 +55,26 @@ window.prototypeAnnotations = {
           "w": 1.1630434782608696,
           "h": 1.8333333333333333
         }
+      },
+      {
+        "uid": "40991338-32b7-44e5-93cd-ee6f04a3f773",
+        "id": "4",
+        "anchor": "body > dialog:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > button:nth-of-type(3)",
+        "rect": {
+          "x": -0.08035714285714286,
+          "y": -0.16417910447761194,
+          "w": 1.2767857142857142,
+          "h": 1.3134328358208955
+        }
       }
     ],
-    "cards": []
+    "cards": [
+      {
+        "uid": "f729f6a7-cdcc-437f-b9de-8546a02861f6",
+        "id": "4",
+        "content": "<p></p>"
+      }
+    ]
   },
   "third-party-after-sales@v1.1": {
     "boxes": [

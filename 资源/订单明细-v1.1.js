@@ -1,5 +1,5 @@
 // 仅复刻用户截图可见内容；缺失业务规则及折叠内容不推断。
-function openOrderDetails(row, {onPush, showPush = true, showAccountability = true} = {}) {
+function openOrderDetails(row, {onPush, onReview, showPush = true, showAccountability = true} = {}) {
   const opener = document.activeElement;
   const dialog = document.createElement('dialog'); dialog.className = 'order-detail';
   dialog.setAttribute('aria-label','订单详情');
@@ -21,6 +21,7 @@ function openOrderDetails(row, {onPush, showPush = true, showAccountability = tr
   const actions=document.createElement('div');actions.className='detail-actions';
   if (showAccountability) actions.append(button('追责处理','outline',()=>openAccountability(row)));
   actions.append(button('追责备注',''));
+  if (row['处理状态'] === '待复核' && onReview) actions.append(button('复核','orange',()=>onReview(row)));
   const pushCurrentOrder = showPush && onPush && (() => onPush(row, dialog));
   if (pushCurrentOrder) actions.append(button('推送', '', pushCurrentOrder));
   body.append(actions);

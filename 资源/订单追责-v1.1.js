@@ -147,7 +147,7 @@ function render() {
     const canReview = status === '待复核';
     const canHandle = canPush || canReview;
     const rowActions = [
-      ['查看明细', () => openOrderDetails(row, {onPush: openSinglePush, showPush: canPush, showAccountability: canHandle})]
+      ['查看明细', () => openOrderDetails(row, {onPush: openSinglePush, onReview: openOrderReview, showPush: canPush, showAccountability: canHandle})]
     ];
     if (canHandle) rowActions.push(['追责处理', () => openAccountability(row), 'C01']);
     rowActions.push(
