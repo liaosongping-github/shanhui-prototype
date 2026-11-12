@@ -35,17 +35,6 @@ window.prototypeAnnotations = {
         }
       },
       {
-        "uid": "59e2af03-383b-4089-bac9-954666d54179",
-        "id": "7",
-        "anchor": "#rows > tr:nth-of-type(1) > td:nth-of-type(4)",
-        "rect": {
-          "x": 0.02857142857142857,
-          "y": 0.0891089108910891,
-          "w": 0.85,
-          "h": 0.8514851485148515
-        }
-      },
-      {
         "uid": "8ac86abf-f9fb-4826-be23-b175a0b116e7",
         "id": "8",
         "anchor": "#rows > tr:nth-of-type(1) > td:nth-of-type(9)",
@@ -55,20 +44,20 @@ window.prototypeAnnotations = {
           "w": 0.6285714285714286,
           "h": 0.8415841584158416
         }
-      }
-    ],
-    "cards": [
-      {
-        "uid": "67b440db-1455-4782-892f-b2bb30fdcf58",
-        "id": "7",
-        "content": "<p></p>"
       },
       {
-        "uid": "54047e75-0785-4404-80bf-29010756c00a",
-        "id": "8",
-        "content": "<p></p>"
+        "uid": "8f3bc1fe-8009-4ea1-93bf-aa39d8eb3882",
+        "id": "4",
+        "anchor": "body > div:nth-of-type(2) > section:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+        "rect": {
+          "x": -0.09239130434782608,
+          "y": -0.4375,
+          "w": 1.1630434782608696,
+          "h": 1.8333333333333333
+        }
       }
-    ]
+    ],
+    "cards": []
   },
   "third-party-after-sales@v1.1": {
     "boxes": [
@@ -106,27 +95,6 @@ window.prototypeAnnotations = {
         }
       }
     ],
-    "cards": [
-      {
-        "uid": "90d5faee-29a1-4f10-b1bc-af6f96554e43",
-        "id": "4",
-        "content": "<p></p>"
-      },
-      {
-        "uid": "a2ee5a87-23cc-4a0e-a3b0-ff8c9f732b44",
-        "id": "5",
-        "content": "<p></p>"
-      },
-      {
-        "uid": "54adb593-5462-4566-b600-54ec5394d1f5",
-        "id": "6",
-        "content": "<p></p>"
-      },
-      {
-        "uid": "0047e3f8-7035-4e53-b632-a2729ff3d95f",
-        "id": "7",
-        "content": "<p></p>"
-      }
-    ]
+    "cards": []
   }
 };
