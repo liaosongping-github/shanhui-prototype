@@ -68,33 +68,7 @@ window.prototypeAnnotations = {
         }
       }
     ],
-    "cards": [
-      {
-        "uid": "f729f6a7-cdcc-437f-b9de-8546a02861f6",
-        "id": "4",
-        "content": "<p></p>"
-      },
-      {
-        "uid": "51d07cd8-d634-476f-87aa-742140fd006a",
-        "id": "2",
-        "content": "<p></p>"
-      },
-      {
-        "uid": "51c959d6-b880-4f8f-a334-31396cbccaf7",
-        "id": "3",
-        "content": "<p></p>"
-      },
-      {
-        "uid": "59ebd1b9-7915-4d49-af2f-3fbcd41cbbee",
-        "id": "x",
-        "content": "<p></p>"
-      },
-      {
-        "uid": "7a3875a2-c6c0-41ce-afd5-c6303493e658",
-        "id": "d",
-        "content": "<p></p>"
-      }
-    ]
+    "cards": []
   },
   "third-party-after-sales@v1.1": {
     "boxes": [
