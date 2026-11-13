@@ -6,7 +6,7 @@ const columnWidths = new Map();
 function configureColumnWidths() {
   configurePrototypeTableColumns(document.querySelector('.table-scroll table'), [
     { key: '选择', width: 44, minWidth: 44 },
-    { key: '操作', width: 500, minWidth: 500 },
+    { key: '操作', width: 600, minWidth: 600 },
     ...columns.map(key => ({ key, width: 140, minWidth: 44 }))
   ], columnWidths);
 }
@@ -156,6 +156,7 @@ function render() {
     );
     if (canPush) rowActions.push(['推送', () => openSinglePush(row), 'C03']);
     if (canReview) rowActions.push(['复核', () => openOrderReview(row), 'C04']);
+    if (['待审核', '待复核', '已完成', '已关闭'].includes(status)) rowActions.push(['追责详情', () => openAccountabilityDetails(row)]);
     for (const [label, handler, change] of rowActions) {
       const button = document.createElement('button');
       button.textContent = label;
@@ -318,4 +319,59 @@ function openSinglePush(row, detailDialog) {
     button.onclick=()=>{isThird=Boolean(index);update();};buttons.push(button);switcher.append(button);
   });
   update();
+}
+
+// 详情只读展示当前记录；不读取尚未提交的推送或复核草稿。
+function openAccountabilityDetails(row) {
+  const content = document.createElement('div');
+  content.className = 'order-review-form';
+  const identity = document.createElement('section');
+  identity.className = 'single-push-summary';
+  for (const name of ['代理商', '实际差错价', '条码', '重大差错项']) {
+    const item = document.createElement('div');
+    item.textContent = name + '：' + (row[name] ?? '—');
+    identity.append(item);
+  }
+  content.append(identity);
+  function field(parent, name, multiline = false, value = row[name]) {
+    const label = document.createElement('label');
+    label.className = 'order-review-field';
+    const caption = document.createElement('span');
+    caption.textContent = name + '：';
+    if (['退差金额', '售后原因', '处理类型'].includes(name)) caption.className = 'is-required';
+    const control = document.createElement(multiline ? 'textarea' : 'input');
+    control.readOnly = true;
+    control.setAttribute('aria-label', name);
+    if (multiline) control.rows = 2;
+    control.value = value && value !== '—' ? value : '未提供';
+    label.append(caption, control); parent.append(label);
+  }
+  field(content, '退差金额');
+  field(content, '售后原因');
+  field(content, '追责原因', true);
+  field(content, '追责选项');
+  const cards = Array.isArray(row['追责选项明细']) ? row['追责选项明细'] : [{}];
+  cards.forEach((card, index) => {
+    const section = document.createElement('section'); section.className = 'order-review-card';
+    const heading = document.createElement('div'); heading.className = 'order-review-card-header';
+    heading.textContent = '追责选项 ' + (index + 1);
+    const table = document.createElement('table');
+    const header = table.createTHead().insertRow();
+    for (const name of ['追责选项', '映射选项', '闲鱼选项']) {
+      const th = document.createElement('th'); th.scope = 'col'; th.textContent = name; header.append(th);
+    }
+    const tr = table.createTBody().insertRow();
+    for (const name of ['追责选项', '映射选项', '闲鱼选项']) tr.insertCell().textContent = card[name] || '未提供';
+    const evidence = document.createElement('div'); evidence.className = 'order-review-evidence';
+    evidence.textContent = '图片补充证据：未提供';
+    section.append(heading, table, evidence);
+    field(section, '视频补充证据', false, card['视频补充证据']);
+    content.append(section);
+  });
+  field(content, '处理类型');
+  field(content, '全程视频链接');
+  field(content, '备注', true);
+  const modal = openPrototypeModal({title: '追责详情', content, width: 900});
+  modal.element.classList.add('order-review-modal');
+  modal.element.querySelector('.prototype-modal-footer').remove();
 }

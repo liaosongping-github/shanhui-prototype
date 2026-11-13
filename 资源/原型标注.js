@@ -17,10 +17,10 @@ window.prototypeAnnotations = {
         "id": "2",
         "anchor": "#rows > tr:nth-of-type(1) > td:nth-of-type(2)",
         "rect": {
-          "x": 0.561,
-          "y": 0.039603960396039604,
-          "w": 0.105,
-          "h": 0.7920792079207921
+          "x": 0.4635,
+          "y": 0.12871287128712872,
+          "w": 0.08583333333333333,
+          "h": 0.7326732673267328
         }
       },
       {
@@ -28,10 +28,10 @@ window.prototypeAnnotations = {
         "id": "3",
         "anchor": "#rows > tr:nth-of-type(4) > td:nth-of-type(2)",
         "rect": {
-          "x": 0.562,
+          "x": 0.4611666666666667,
           "y": 0.13861386138613863,
-          "w": 0.106,
-          "h": 0.6831683168316832
+          "w": 0.09183333333333334,
+          "h": 0.7425742574257426
         }
       },
       {
@@ -66,9 +66,26 @@ window.prototypeAnnotations = {
           "w": 1.2767857142857142,
           "h": 1.3134328358208955
         }
+      },
+      {
+        "uid": "a30a8dec-b3e9-4825-9ae5-0afc83a4ee6e",
+        "id": "5",
+        "anchor": "#rows > tr:nth-of-type(1) > td:nth-of-type(2) > button:nth-of-type(6)",
+        "rect": {
+          "x": -0.036764705882352935,
+          "y": -0.10909090909090907,
+          "w": 1.1911764705882353,
+          "h": 1.2727272727272727
+        }
       }
     ],
-    "cards": []
+    "cards": [
+      {
+        "uid": "99dfd18f-8d93-42da-8dd6-1498144947a2",
+        "id": "5",
+        "content": "<p></p>"
+      }
+    ]
   },
   "third-party-after-sales@v1.1": {
     "boxes": [
