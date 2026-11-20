@@ -36,7 +36,11 @@
     updateToolbar();notice('');
     buttons.annotations.textContent=annotationsVisible?'隐藏改动标注':'显示改动标注';
     frameReady=false;for(const id of ['edit','sync'])buttons[id].disabled=true;
-    const entries=config.pages.filter(page=>(page.product||'boss')===product).flatMap(page=>{const version=release==='all'?config.releases.slice().reverse().map(id=>page.versions.find(v=>v.id===id)).find(Boolean):page.versions.find(v=>v.id===release);return version?[{page,version}]:[];});
+    const availableEntries=config.pages.flatMap(page=>{const version=release==='all'?config.releases.slice().reverse().map(id=>page.versions.find(v=>v.id===id)).find(Boolean):page.versions.find(v=>v.id===release);return version?[{page,version}]:[];});
+    if(availableEntries.length&&!availableEntries.some(({page})=>(page.product||'boss')===product)){
+      product=(availableEntries.find(({page})=>page.id===pageId)||availableEntries[0]).page.product||'boss';
+    }
+    const entries=availableEntries.filter(({page})=>(page.product||'boss')===product);
     const entry=entries.find(e=>e.page.id===pageId)||entries[0];
     if(!entry){frame.hidden=true;document.getElementById('title').textContent=(config.products?.find(p=>p.id===product)?.name||product);notice('本产品在此版本暂无相关页面。');if(document.getElementById('empty-product'))document.getElementById('empty-product').hidden=false;history.replaceState(null,'',url(location.href));return;}if(document.getElementById('empty-product'))document.getElementById('empty-product').hidden=true;
     annotationKey=entry.page.id+'@'+entry.version.id;
