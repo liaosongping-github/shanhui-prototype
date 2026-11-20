@@ -137,12 +137,55 @@ window.prototypeAnnotations = {
           "w": 1.1111111111111112,
           "h": 1.4285714285714286
         }
+      },
+      {
+        "uid": "2b9a6961-d726-4749-9f19-bd01a87224e0",
+        "id": "2",
+        "anchor": "#after-sales-rows > tr:nth-of-type(1) > td:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(8)",
+        "rect": {
+          "x": -0.05,
+          "y": -0.14285714285714285,
+          "w": 1.1333333333333333,
+          "h": 1.2678571428571428
+        }
+      },
+      {
+        "uid": "84bdb8a3-adc2-4491-a827-8cb4a7691d4d",
+        "id": "3",
+        "anchor": "#prototype-dialog > div:nth-of-type(2) > div:nth-of-type(1) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(6) > button:nth-of-type(1)",
+        "rect": {
+          "x": -17.92265625,
+          "y": -1.12875,
+          "w": 25.45,
+          "h": 3.02
+        }
+      },
+      {
+        "uid": "dbd7958d-e963-41ea-afef-f422e2b84664",
+        "id": "4",
+        "anchor": "#prototype-dialog > form:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(4) > button:nth-of-type(1), #prototype-dialog > form:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(6) > label:nth-of-type(1) > span:nth-of-type(2) > input:nth-of-type(1), #prototype-dialog > form:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(6) > button:nth-of-type(1), #prototype-dialog > form:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(6) > button:nth-of-type(2)",
+        "rect": {
+          "x": -0.07107231920199501,
+          "y": -0.7274830060422961,
+          "w": 3.417705735660848,
+          "h": 1.86404833836858
+        }
       }
     ],
     "cards": [
       {
         "uid": "f0da6a86-84d9-4d4f-9c58-3b6f589d5618",
         "id": "2",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "8eba0cdf-398e-45e8-aedc-b7a6ad11523e",
+        "id": "3",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "646769a2-6540-4519-9b95-11533658f028",
+        "id": "4",
         "content": "<p></p>"
       }
     ]
@@ -196,6 +239,17 @@ window.prototypeAnnotations = {
           "y": -0.36666666666666664,
           "w": 1.146788990825688,
           "h": 1.6
+        }
+      },
+      {
+        "uid": "5e98cd74-fdb1-4e52-be6d-a8540c2629df",
+        "id": "1",
+        "anchor": "#order-list > article:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(3) > button:nth-of-type(1), #order-list > article:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(3) > button:nth-of-type(2)",
+        "rect": {
+          "x": -0.7376681614349776,
+          "y": -4.85,
+          "w": 1.8677130044843049,
+          "h": 6.65
         }
       }
     ],
@@ -279,6 +333,50 @@ window.prototypeAnnotations = {
       {
         "uid": "43d80127-ea8e-4fca-8515-0532197fbde2",
         "id": "3",
+        "content": "<p></p>"
+      }
+    ]
+  },
+  "youpin-buy@v1.2": {
+    "boxes": [
+      {
+        "uid": "bf76a49c-5dc6-44a2-8992-95364e2f85bb",
+        "id": "1",
+        "anchor": "body > div:nth-of-type(2) > section:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > nav:nth-of-type(1) > a:nth-of-type(4)",
+        "rect": {
+          "x": 0.1791044776119403,
+          "y": -0.03773584905660377,
+          "w": 0.5920398009950248,
+          "h": 1.0849056603773586
+        }
+      }
+    ],
+    "cards": [
+      {
+        "uid": "267a4f85-a62a-4aa7-8463-e1dfd1b02289",
+        "id": "1",
+        "content": "<p></p>"
+      }
+    ]
+  },
+  "youpin-profile@v1.2": {
+    "boxes": [
+      {
+        "uid": "5879c888-ee5b-495e-bf46-e51bac86b440",
+        "id": "1",
+        "anchor": "body > div:nth-of-type(2) > section:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(4) > button:nth-of-type(1)",
+        "rect": {
+          "x": -0.11320754716981132,
+          "y": -0.17010309278350516,
+          "w": 1.1886792452830188,
+          "h": 1.4948453608247423
+        }
+      }
+    ],
+    "cards": [
+      {
+        "uid": "4353e38b-373f-48fa-9153-685c968d4e92",
+        "id": "1",
         "content": "<p></p>"
       }
     ]
