@@ -21,3 +21,5 @@ body.manual-review-page{height:100vh;overflow:hidden;display:flex;flex-direction
 .manual-review-page .manual-collapse:focus-visible{outline:2px solid #2196f3;outline-offset:2px}
 .manual-review-page .review-notes-content{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
 .manual-review-page .review-current:focus-visible,.manual-review-page .review-notes-content:focus-visible{outline:2px solid #2196f3;outline-offset:-2px}
+
+.manual-card-number-input{width:90px;height:28px;font-size:13px;padding:3px 5px;border:1px solid #2196f3;border-radius:3px}.review-notes .review-marker[role=button]{cursor:text}

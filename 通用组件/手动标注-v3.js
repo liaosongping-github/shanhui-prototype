@@ -104,13 +104,27 @@
     if(!persist())cards=previous;
     render();
   }
+  function renameAnnotation(oldId,id){
+    id=id.trim();if(!id||id.length>30)return false;if(oldId===id)return true;
+    const source=cards.find(c=>c.id===oldId),target=cards.find(c=>c.id===id);
+    const nonempty=c=>!!c&&(!!String(c.content||'').replace(/<[^>]*>/g,'').replace(/&nbsp;/g,'').trim()||/<(?:img|video|audio)\b/i.test(c.content||''));
+    if(target&&source&&nonempty(target)){report('目标编号已有描述，请使用其他编号，避免覆盖内容。');return false;}
+    const previousCards=cards.map(c=>({...c})),previousIds=items.map(i=>i.id);
+    if(source){cards=cards.filter(c=>c!==target||c===source);source.id=id;}
+    for(const box of items)if(box.id===oldId)box.id=id;
+    if(!persist()){cards=previousCards;items.forEach((box,i)=>box.id=previousIds[i]);return false;}return true;
+  }
   function commitNumber(item,id){
     id=id.trim();if(!id||id.length>30)return false;
-    const oldId=item.id,previousCards=cards;
-    item.id=id;
+    if(item.id)return renameAnnotation(item.id,id);
+    const previousCards=cards;item.id=id;
     if(!cards.some(n=>n.id===id))cards=[...cards,{uid:crypto.randomUUID(),id,content:'<p></p>'}];
-    if(!persist()){item.id=oldId;cards=previousCards;return false;}
-    return true;
+    if(!persist()){item.id='';cards=previousCards;return false;}return true;
+  }
+  function renameCard(card,marker){
+    if(ctx.review)return;const input=document.createElement('input');input.className='manual-card-number-input';input.value=card.id;input.maxLength=30;input.setAttribute('aria-label','描述卡编号');marker.replaceWith(input);let done=false;
+    const finish=cancel=>{if(done)return;if(!cancel&&!renameAnnotation(card.id,input.value)){input.setAttribute('aria-invalid','true');return;}done=true;input.onblur=null;render();};
+    input.onkeydown=e=>{e.stopPropagation();if(e.key==='Enter'){e.preventDefault();finish(false);}if(e.key==='Escape'){e.preventDefault();finish(true);}};input.onblur=()=>finish(!input.value.trim());input.focus();input.select();
   }
   function renameBox(item){
     if(ctx.review)return;
@@ -122,7 +136,7 @@
     if(!cards.length){const empty=document.createElement('p');empty.textContent=ctx.review?'本页暂无描述卡。':'画框后在左上角填写编号，再点击描述卡的“编辑”填写说明。';content.append(empty);}
     for(const cardData of cards){
       const card=document.createElement('article');card.id='manual-note-'+cardData.uid;
-      const marker=document.createElement('span');marker.className='review-marker';marker.textContent=cardData.id;card.append(marker);
+      const marker=document.createElement('span');marker.className='review-marker';marker.textContent=cardData.id;card.append(marker);if(!ctx.review){marker.tabIndex=0;marker.title='双击或按 F2 修改编号（同号框同步修改）';marker.setAttribute('role','button');marker.setAttribute('aria-label','修改描述编号 '+cardData.id);marker.ondblclick=()=>renameCard(cardData,marker);marker.onkeydown=e=>{if(e.key==='F2'||e.key==='Enter'){e.preventDefault();renameCard(cardData,marker);}};}
       if(!ctx.review)card.append(button('编辑',()=>editGroup(cardData)),button('删除',()=>removeCard(cardData)));
       card.append(editor.displayContent(cardData));content.append(card);
     }

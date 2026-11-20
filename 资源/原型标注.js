@@ -124,5 +124,163 @@ window.prototypeAnnotations = {
       }
     ],
     "cards": []
+  },
+  "after-sales-orders@v1.2": {
+    "boxes": [
+      {
+        "uid": "bbb853c2-0dd8-4645-850d-79388e37cd55",
+        "id": "2",
+        "anchor": "#after-sales-rows > tr:nth-of-type(1) > td:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+        "rect": {
+          "x": -0.06666666666666667,
+          "y": -0.25,
+          "w": 1.1111111111111112,
+          "h": 1.4285714285714286
+        }
+      }
+    ],
+    "cards": [
+      {
+        "uid": "f0da6a86-84d9-4d4f-9c58-3b6f589d5618",
+        "id": "2",
+        "content": "<p></p>"
+      }
+    ]
+  },
+  "youpin-service-detail@v1.2": {
+    "boxes": [
+      {
+        "uid": "f2608bfe-294a-4af0-a6ed-fc3b897812ec",
+        "id": "1",
+        "anchor": "#detail-footer > button:nth-of-type(1)",
+        "rect": {
+          "x": -0.007874015748031496,
+          "y": -0.16666666666666666,
+          "w": 1.031496062992126,
+          "h": 1.3066666666666666
+        }
+      },
+      {
+        "uid": "54f4c9d8-ab99-4e4b-82da-0301fb4b42cc",
+        "id": "3",
+        "anchor": "#detail-body > section:nth-of-type(6) > ol:nth-of-type(1) > li:nth-of-type(2) > p:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > button:nth-of-type(1)",
+        "rect": {
+          "x": -1.9396551724137931,
+          "y": -2.5,
+          "w": 6.310344827586207,
+          "h": 3.8448275862068964
+        }
+      }
+    ],
+    "cards": [
+      {
+        "uid": "fe308eb7-5c27-4ee2-8865-33f1323692da",
+        "id": "1",
+        "content": "<span style=\"color: rgb(48, 50, 50);\">1、按钮重命名：“不同意，客服沟通”改为“不同意补差金额”</span><p style=\"color: rgb(48, 50, 50);\"></p><div style=\"color: rgb(48, 50, 50);\">2、点击后弹窗填写“原因”、“上传凭证”、“期望补差金额”，填完提交后，和售后单的状态扭转逻辑和现在保持一致</div>\n\n<p></p>"
+      },
+      {
+        "uid": "9150e84e-f5b1-4ad3-af91-e2031865df04",
+        "id": "3",
+        "content": "<p></p>"
+      }
+    ]
+  },
+  "youpin-services@v1.2": {
+    "boxes": [
+      {
+        "uid": "5faccd08-ee52-4c4a-994e-42140a108204",
+        "id": "1",
+        "anchor": "#order-list > article:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(3) > button:nth-of-type(1)",
+        "rect": {
+          "x": -0.06880733944954129,
+          "y": -0.36666666666666664,
+          "w": 1.146788990825688,
+          "h": 1.6
+        }
+      }
+    ],
+    "cards": [
+      {
+        "uid": "b71f297a-0fb2-4c6b-8795-195024767360",
+        "id": "1",
+        "content": "\n<span style=\"color: rgb(48, 50, 50);\">1、按钮重命名：“不同意，客服沟通”改为“不同意补差金额”</span><p style=\"color: rgb(48, 50, 50);\"></p><div style=\"color: rgb(48, 50, 50);\">2、点击后弹窗填写“原因”、“上传凭证”、“期望补差金额”，填完提交后，和售后单的状态扭转逻辑和现在保持一致</div>\n\n<p></p>"
+      }
+    ]
+  },
+  "channel-staff@v1.2": {
+    "boxes": [
+      {
+        "uid": "95006a17-636b-4cae-9259-5838a4efffe0",
+        "id": "1",
+        "anchor": "#staff-rows > tr:nth-of-type(1) > td:nth-of-type(7) > div:nth-of-type(1) > button:nth-of-type(2)",
+        "rect": {
+          "x": -0.1,
+          "y": -0.20689655172413793,
+          "w": 1.22,
+          "h": 1.4137931034482758
+        }
+      },
+      {
+        "uid": "9a17d60b-7b8a-4d1d-8647-d867f515b5f4",
+        "id": "1",
+        "anchor": "body > dialog:nth-of-type(1) > div:nth-of-type(1) > form:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+        "rect": {
+          "x": -0.2172573189522342,
+          "y": -0.36083984375,
+          "w": 1.2604006163328196,
+          "h": 1.75
+        }
+      },
+      {
+        "uid": "198c7c93-e7fb-4c48-886d-f437423ae651",
+        "id": "1",
+        "anchor": "body > dialog:nth-of-type(2) > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > button:nth-of-type(1), body > dialog:nth-of-type(2) > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1), body > dialog:nth-of-type(2) > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > button:nth-of-type(2), body > dialog:nth-of-type(2) > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > button:nth-of-type(1), body > dialog:nth-of-type(2) > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > input:nth-of-type(1), body > dialog:nth-of-type(2) > div:nth-of-type(1) > section:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > button:nth-of-type(2)",
+        "rect": {
+          "x": -0.37435897435897436,
+          "y": -0.9665071770334929,
+          "w": 2.6,
+          "h": 2.3157894736842106
+        }
+      },
+      {
+        "uid": "0dea163f-616c-4c73-80db-c1d633312dc4",
+        "id": "2",
+        "anchor": "#staff-limit-policy",
+        "rect": {
+          "x": -0.075,
+          "y": -0.23333333333333334,
+          "w": 1.1833333333333333,
+          "h": 1.4
+        }
+      },
+      {
+        "uid": "684450d5-0b1b-4445-897c-76dcb4475dde",
+        "id": "3",
+        "anchor": "#staff-rows > tr:nth-of-type(1) > td:nth-of-type(7) > div:nth-of-type(1) > button:nth-of-type(10)",
+        "rect": {
+          "x": -0.09722222222222222,
+          "y": -0.21428571428571427,
+          "w": 1.2361111111111112,
+          "h": 1.4285714285714286
+        }
+      }
+    ],
+    "cards": [
+      {
+        "uid": "fb543794-e4bd-4992-88d5-9f556b089226",
+        "id": "1",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "047c3b58-b742-4536-95cc-478ffdd9a021",
+        "id": "2",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "43d80127-ea8e-4fca-8515-0532197fbde2",
+        "id": "3",
+        "content": "<p></p>"
+      }
+    ]
   }
 };

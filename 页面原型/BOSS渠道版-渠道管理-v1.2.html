@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BOSS-渠道版 · 渠道管理</title>
+  <link rel="stylesheet" href="../设计规范/基础样式-v1.css">
+  <link rel="stylesheet" href="../通用组件/原型导航-v1.css">
+  <link rel="stylesheet" href="../通用组件/改动评审-v1.css">
+  <link rel="stylesheet" href="../通用组件/手动标注-v3.css">
+  <link rel="stylesheet" href="../通用组件/业务顶栏-v1.css">
+  <link rel="stylesheet" href="../通用组件/弹窗-v2.css">
+  <link rel="stylesheet" href="../资源/BOSS渠道版-渠道管理-v1.2.css">
+</head>
+<body>
+  <div class="shell">
+    <aside data-prototype-navigation></aside>
+    <main class="boss-main">
+      <header class="boss-top"></header>
+      <div class="channel-admin-workspace">
+        <aside class="channel-admin-tree" aria-label="渠道目录">
+          <div class="channel-admin-tree-title">渠道目录</div>
+          <div id="channel-admin-nodes"></div>
+        </aside>
+        <section class="channel-admin-main">
+          <div class="channel-admin-breadcrumb">管理 &gt; <strong>渠道管理</strong></div>
+          <form id="channel-admin-query" class="channel-admin-panel">
+            <div class="channel-admin-fields">
+              <label>渠道ID<input name="channelId" value="1"></label>
+              <label>渠道名称<input name="channelName"></label>
+              <label>店长电话<input name="managerPhone"></label>
+              <label>渠道人员<input name="staff" placeholder="请选择渠道"></label>
+              <label>第三方编码<input name="thirdPartyCode"></label>
+            </div>
+            <div class="channel-admin-tools">
+              <button type="submit" class="ca-blue">查询</button>
+              <button type="button" class="ca-blue" data-pending="新增渠道">新增渠道</button>
+              <button type="button" class="ca-gray" data-pending="导出">导出</button>
+              <button type="button" class="ca-gray" data-pending="导入">导入</button>
+              <button type="button" class="ca-template" data-pending="模板">模板</button>
+              <button type="button" class="ca-gray" data-pending="批量停用渠道">批量停用渠道</button>
+              <button type="button" class="ca-template" data-pending="停用模板">模板</button>
+              <button type="button" class="ca-gray" data-pending="批量渠道迁移">批量渠道迁移</button>
+              <button type="button" class="ca-template" data-pending="迁移模板">模板</button>
+              <button type="button" class="ca-gray" data-pending="批量渠道信息变更">批量渠道信息变更</button>
+              <button type="button" class="ca-template" data-pending="信息变更模板">模板</button>
+              <button type="button" class="ca-blue" data-pending="同步渠道ChannelCode">同步渠道ChannelCode</button>
+              <button type="button" class="ca-gray" data-pending="批量打标签">批量打标签</button>
+              <button type="button" class="ca-template" data-pending="标签模板">模板</button>
+              <button type="button" class="ca-blue" data-pending="关联渠道替换">关联渠道替换</button>
+              <button type="button" class="ca-orange" data-pending="批量修改仓位">批量修改仓位</button>
+            </div>
+            <div class="channel-admin-search-tags">搜索条件： <span>1 ×</span></div>
+          </form>
+          <section class="channel-admin-table-card">
+            <div class="channel-admin-table-scroll" tabindex="0" aria-label="渠道列表">
+              <table class="channel-admin-table">
+                <thead><tr><th>渠道名称</th><th>渠道编码</th><th>客户</th><th>渠道级别</th><th>店长电话</th><th>创建时间</th><th>关联渠道</th><th>状态</th><th>第三方编码</th><th>操作</th></tr></thead>
+                <tbody id="channel-admin-rows"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="../资源/原型配置.js"></script>
+  <script src="../通用组件/原型导航-v2.js"></script>
+  <script src="../通用组件/业务顶栏-v1.js"></script>
+  <script src="../通用组件/全局消息-v1.js"></script>
+  <script src="../通用组件/弹窗-v2.js"></script>
+  <script src="../资源/BOSS渠道版-渠道管理-v1.2.js"></script>
+  <script src="../资源/原型标注.js"></script>
+  <script src="../通用组件/图文编辑-v3.js"></script>
+  <script src="../通用组件/标注存储-v1.js"></script>
+  <script src="../通用组件/手动标注-v3.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>售后检测 · V1.2</title>
+  <link rel="stylesheet" href="../设计规范/基础样式-v1.css">
+  <link rel="stylesheet" href="../通用组件/原型导航-v1.css">
+  <link rel="stylesheet" href="../通用组件/改动评审-v1.css">
+  <link rel="stylesheet" href="../通用组件/手动标注-v3.css">
+  <link rel="stylesheet" href="../通用组件/业务顶栏-v1.css">
+  <link rel="stylesheet" href="../资源/售后检测-v1.2.css">
+</head>
+<body>
+  <div class="shell">
+    <aside id="boss-sidebar" data-prototype-navigation></aside>
+    <main class="boss-main">
+      <header class="boss-top"></header>
+      <div class="inspection-content">
+        <div class="breadcrumb">
+          销售管理 &gt; <strong>售后检测</strong>
+          <button type="button" id="favorite" class="inspection-favorite" aria-pressed="false">☆ 收藏</button>
+        </div>
+
+        <section class="inspection-search-panel" aria-label="售后检测扫码区">
+          <label class="inspection-field"><span>条码/实物码：</span><input id="inspection-code" placeholder=""></label>
+          <button type="button" class="inspection-start" id="start-inspection">开始检测</button>
+          <label class="inspection-check"><input type="checkbox" id="remember-type">记住检测类型</label>
+          <label class="inspection-check"><input type="checkbox" id="record-video">开启录像</label>
+          <label class="inspection-standard"><span>检测标准</span><select id="inspection-standard"><option>精检</option><option>普检</option><option>抽检</option></select></label>
+          <button type="button" class="inspection-switch" data-pending="切换检测旧">切换检测旧</button>
+        </section>
+
+        <div class="inspection-tool-row" role="group" aria-label="检测结果操作">
+          <button type="button" class="inspection-fail" data-pending="检测不通过">检测不通过</button>
+          <button type="button" class="inspection-exception" data-pending="售后异常">售后异常</button>
+          <button type="button" class="inspection-box" data-pending="我的箱">我的箱</button>
+        </div>
+
+        <section class="inspection-table-card" aria-label="售后检测列表">
+          <div class="inspection-table-scroll" tabindex="0" role="region" aria-label="售后检测表格，可横向滚动">
+            <table class="inspection-table">
+              <colgroup>
+                <col class="inspection-orders"><col class="inspection-barcode"><col class="inspection-model"><col class="inspection-price"><col class="inspection-position">
+                <col class="inspection-unit"><col class="inspection-client"><col class="inspection-customer"><col class="inspection-time"><col class="inspection-action-col">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">订单号</th><th scope="col">条码</th><th scope="col">型号</th><th scope="col">检测价</th><th scope="col">位置</th>
+                  <th scope="col">出库单位</th><th scope="col">客户</th><th scope="col">顾客名称</th><th scope="col">收货时间</th><th scope="col">操作</th>
+                </tr>
+              </thead>
+              <tbody id="inspection-rows"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="../通用组件/业务顶栏-v1.js"></script>
+  <script src="../资源/原型配置.js"></script>
+  <script src="../通用组件/原型导航-v2.js"></script>
+  <script src="../通用组件/全局消息-v1.js"></script>
+  <script src="../资源/售后检测-v1.2.js"></script>
+  <script src="../资源/原型标注.js"></script>
+  <script src="../通用组件/图文编辑-v3.js"></script>
+  <script src="../通用组件/标注存储-v1.js"></script>
+  <script src="../通用组件/手动标注-v3.js"></script>
+</body>
+</html>

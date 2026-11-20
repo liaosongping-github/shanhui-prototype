@@ -1,3 +1,9 @@
+/* The annotation editor owns its control baseline, independent of business-page CSS. */
+.review-editor{font-family:Arial,"Microsoft YaHei",sans-serif;color:#5c6570}
+.review-editor button,.review-editor input,.review-editor select{font:inherit;outline-offset:3px;box-sizing:border-box}
+.review-editor button{cursor:pointer;border:0;border-radius:4px;padding:9px 16px;background:#209eff;color:#fff}
+.review-editor button:disabled{opacity:.45;cursor:default}
+.review-editor input,.review-editor select{height:36px;border:1px solid #d9dde5;background:white;border-radius:4px;padding:6px 12px;color:#70757d;min-width:0}
 .review-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 18px;background:white;border-bottom:1px solid #dce3ec}.review-bar button{padding:7px 12px}.review-layout{display:flex;align-items:flex-start;min-height:100vh}.review-current{flex:1;min-width:0}.review-current>h2,.review-baseline>h2{margin:0;padding:10px 16px;font-size:14px;background:#eef4fa}.review-notes{display:flex;flex-direction:column;flex:0 0 var(--review-notes-width,300px);min-width:0;padding:14px;background:#fff;max-height:90vh;position:sticky;top:0}.review-notes article{padding:10px 0;border-bottom:1px solid #ddd;font-size:13px;line-height:1.7}.review-notes article>button{text-align:left}.review-baseline{flex:1;min-width:0}.review-baseline[hidden],.review-notes[hidden]{display:none}.review-baseline iframe{width:100%;height:95vh;border:0}.review-comparing .review-current .prototype-navigation{display:none}.review-marker{font-size:11px!important;font-weight:700;line-height:1.25;padding:3px 5px!important;margin:3px!important;background:#e67225!important;color:#fff!important;vertical-align:middle}.review-inline-note{font-size:13px;color:#805020;line-height:1.7;background:#fff7e8;padding:10px}.review-hidden .review-marker,.review-hidden .review-inline-note{display:none}.review-hidden [data-change]{outline:none}body:not(.review-hidden) [data-change]{outline:1px dashed #e67225;outline-offset:2px}.review-comparing .review-current{overflow:auto}.review-comparing .review-current .shell{min-width:900px}.review-comparing{overflow:auto}.review-comparing .review-baseline,.review-comparing .review-current{flex:1 0 650px}.review-current .prototype-navigation{flex-basis:190px;width:190px}
 
 .review-bar[hidden]{display:none}.review-current>h2[hidden]{display:none}
@@ -175,3 +181,6 @@
 .review-rich ol[data-review-list="padded"] > li::marker { content: counter(review-step,decimal-leading-zero) '.  '; }
 .review-rich ol[data-review-list="chinese"] > li::marker { content: counter(review-step,cjk-ideographic) '、'; }
 .review-rich ol[data-review-list="chinese-paren"] > li::marker { content: '（' counter(review-step,cjk-ideographic) '）'; }
+
+/* Match the established BOSS editor control baseline on mobile hosts too. */
+.review-editor .review-editor-toolbar button{border:0;border-radius:4px;padding:9px 16px;background:#209eff;color:#fff;font:16px Arial,"Microsoft YaHei",sans-serif}

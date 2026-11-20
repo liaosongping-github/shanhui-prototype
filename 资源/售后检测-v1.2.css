@@ -1,0 +1,55 @@
+/* 售后检测 · 生态20261120，按本轮截图复刻并沿用项目基础设计令牌。 */
+.inspection-content{padding:20px 22px 28px;min-width:0}
+.inspection-content .breadcrumb{margin:2px 0 18px;color:#6c7076;font-size:14px}
+.inspection-content .breadcrumb strong{font-weight:400;color:#4c5058}
+.inspection-favorite{padding:0;margin-left:10px;background:transparent;color:#2599ed;font-size:14px}
+.inspection-search-panel{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-height:72px;padding:16px 20px;background:#eef1f6;border:1px solid #eef1f6;border-radius:3px}
+.inspection-field{display:flex;align-items:center;gap:10px;color:#5f656d;font-size:14px;white-space:nowrap}
+.inspection-field input{width:255px;height:34px;border:1px solid #dfe3ea;border-radius:3px;background:white;color:#6d737b;padding:6px 10px}
+.inspection-field input::placeholder{color:#bcc2cb}
+.inspection-check{display:flex;align-items:center;gap:6px;color:#626870;font-size:14px;white-space:nowrap}
+.inspection-check input{width:15px;height:15px;margin:0;accent-color:#209eff}
+.inspection-standard{display:flex;align-items:center;gap:5px;color:#626870;font-size:14px;white-space:nowrap}
+.inspection-standard select{width:145px;height:34px;color:#8c939b;background:white;border:1px solid #dfe3ea;border-radius:3px}
+.inspection-start{min-height:34px;padding:6px 16px;border-radius:3px;background:#209eff;font-size:14px}
+.inspection-switch{margin-left:auto;min-height:34px;padding:6px 16px;border-radius:3px;background:#209eff;font-size:14px}
+.inspection-tool-row{display:flex;justify-content:flex-end;align-items:center;gap:10px;padding:12px 0 12px}
+.inspection-tool-row button{min-height:32px;padding:6px 16px;border-radius:3px;font-size:14px}
+.inspection-tool-row .inspection-fail{background:#f45a63}
+.inspection-tool-row .inspection-exception{background:#f3a21f}
+.inspection-tool-row .inspection-box{background:#209eff}
+.inspection-table-card{background:#fff;border-radius:3px;padding:0 18px 16px;box-shadow:0 1px 2px #1d2a3a0a}
+.inspection-table-scroll{max-height:min(650px,calc(100vh - 300px));overflow:auto;scrollbar-color:#aeb5c0 #f2f4f7;scrollbar-width:thin}
+.inspection-table{width:100%;min-width:1200px;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:13px;color:#5e646c}
+.inspection-table th{position:sticky;top:0;z-index:2;height:54px;padding:10px 12px;background:#fff;border-top:1px solid #e7ebf0;border-bottom:1px solid #e7ebf0;color:#858b93;font-weight:400;text-align:left;white-space:nowrap}
+.inspection-table td{height:42px;padding:8px 12px;border-bottom:1px solid #edf0f4;border-right:1px solid #f1f3f6;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inspection-table th:first-child,.inspection-table td:first-child{border-left:1px solid #edf0f4}
+.inspection-table tr:hover td{background:#fbfdff}
+.inspection-table .inspection-orders{width:158px}
+.inspection-table .inspection-barcode{width:166px}
+.inspection-table .inspection-model{width:132px}
+.inspection-table .inspection-price{width:104px}
+.inspection-table .inspection-position{width:112px}
+.inspection-table .inspection-unit{width:144px}
+.inspection-table .inspection-client{width:146px}
+.inspection-table .inspection-customer{width:146px}
+.inspection-table .inspection-time{width:170px}
+.inspection-table .inspection-action-col{width:182px}
+.inspection-row-actions{display:flex;align-items:center;gap:8px}
+.inspection-row-actions button{height:30px;padding:4px 10px;background:#fff;color:#2599ed;border:1px solid #bfe3fa;border-radius:3px;font-size:13px;white-space:nowrap}
+.inspection-row-actions button:hover{background:#eff9ff}
+.inspection-row-actions button[data-action="检测"]{color:#626a73;border-color:#d7dce3}
+.inspection-empty{height:90px!important;text-align:center;color:#8b9199;white-space:normal!important}
+@media(max-width:1120px){
+  .inspection-search-panel{align-items:flex-start}
+  .inspection-switch{margin-left:0}
+}
+@media(max-width:760px){
+  .inspection-content{padding:14px 12px 20px}
+  .inspection-field{width:100%}
+  .inspection-field input{flex:1;width:auto}
+  .inspection-standard select{width:130px}
+  .inspection-tool-row{justify-content:flex-start;flex-wrap:wrap}
+  .inspection-table-card{padding-inline:10px}
+  .inspection-table-scroll{max-height:500px}
+}

@@ -11,6 +11,7 @@
   try{notesExpanded=localStorage.getItem(notesExpandedKey)!=='false';}catch{}
   const buttons=Object.fromEntries(['annotations','edit','share','sync'].map(id=>[id,document.getElementById(id)]));
   let release=(q.get('release')||q.get('version')||config.releases.at(-1)).toLowerCase(), pageId=q.get('page');
+  let product=q.get('product')||config.pages.find(p=>p.id===pageId)?.product||'boss';
   const notice=text=>{
     const n=document.getElementById('notice');n.textContent=text;n.hidden=!text;
     if(text){
@@ -19,7 +20,7 @@
       close.onclick=()=>{n.hidden=true;};n.append(close);
     }
   };
-  const url=(root)=>{const u=new URL('index.html',root);u.searchParams.set('release',release);u.searchParams.set('page',pageId);return u;};
+  const url=(root)=>{const u=new URL('index.html',root);u.searchParams.set('release',release);u.searchParams.set('page',pageId);u.searchParams.set('product',product);for(const key of ['order','from','origin','service'])if(q.get(key)&&['youpin-detail','youpin-report','youpin-aftersale','youpin-services','youpin-service-detail'].includes(pageId))u.searchParams.set(key,q.get(key));if(['youpin-orders','youpin-detail','youpin-report','youpin-aftersale','youpin-services','youpin-service-detail'].includes(pageId)&&q.get('tab'))u.searchParams.set('tab',q.get('tab'));return u;};
   if((!config.releases.includes(release)&&release!=='all')||(review&&release==='all')){document.querySelector('header').hidden=true;frame.hidden=true;notice('该迭代版本不存在，请使用有效版本链接。');return;}
   selector.replaceChildren(new Option('全部（各页最新版）','all'),...config.releases.map(id=>new Option(config.releaseNames?.[id]||id.toUpperCase(),id)));
   selector.value=release;selector.hidden=review;
@@ -35,14 +36,17 @@
     updateToolbar();notice('');
     buttons.annotations.textContent=annotationsVisible?'隐藏改动标注':'显示改动标注';
     frameReady=false;for(const id of ['edit','sync'])buttons[id].disabled=true;
-    const entries=config.pages.flatMap(page=>{const version=release==='all'?config.releases.slice().reverse().map(id=>page.versions.find(v=>v.id===id)).find(Boolean):page.versions.find(v=>v.id===release);return version?[{page,version}]:[];});
+    const entries=config.pages.filter(page=>(page.product||'boss')===product).flatMap(page=>{const version=release==='all'?config.releases.slice().reverse().map(id=>page.versions.find(v=>v.id===id)).find(Boolean):page.versions.find(v=>v.id===release);return version?[{page,version}]:[];});
     const entry=entries.find(e=>e.page.id===pageId)||entries[0];
-    if(!entry){frame.hidden=true;notice('本版本还没有页面。');return;}
+    if(!entry){frame.hidden=true;document.getElementById('title').textContent=(config.products?.find(p=>p.id===product)?.name||product);notice('本产品在此版本暂无相关页面。');if(document.getElementById('empty-product'))document.getElementById('empty-product').hidden=false;history.replaceState(null,'',url(location.href));return;}if(document.getElementById('empty-product'))document.getElementById('empty-product').hidden=true;
     annotationKey=entry.page.id+'@'+entry.version.id;
-    frame.hidden=false;pageId=entry.page.id;document.getElementById('title').textContent=entry.page.name+' · '+(config.releaseNames?.[entry.version.id]||entry.version.id.toUpperCase());
-    const target=new URL(entry.version.path,location.href);target.searchParams.set('toolbar','parent');target.searchParams.set('release',release);target.searchParams.set('annotations',String(annotationsVisible));target.searchParams.set('notesExpanded',String(notesExpanded));if(review)target.searchParams.set('mode','review');frame.src=target.href;
+    frame.hidden=false;pageId=entry.page.id;document.getElementById('title').textContent=((config.products?.find(p=>p.id===product)?.name||'BOSS系统')+' · ')+entry.page.name+' · '+(config.releaseNames?.[entry.version.id]||entry.version.id.toUpperCase());
+    const target=new URL(entry.version.path,location.href);if(q.get('tab')&&['youpin-orders','youpin-detail','youpin-report','youpin-aftersale','youpin-services','youpin-service-detail'].includes(entry.page.id))target.searchParams.set('tab',q.get('tab'));for(const key of ['order','from','origin','service'])if(q.get(key)&&['youpin-detail','youpin-report','youpin-aftersale','youpin-services','youpin-service-detail'].includes(entry.page.id))target.searchParams.set(key,q.get(key));if(['youpin-services','youpin-service-detail'].includes(entry.page.id)){try{target.searchParams.set('serviceChanges',localStorage.getItem('prototype-service-state-v1:'+new URL('./',location.href).href)||'{}');}catch{}}target.searchParams.set('toolbar','parent');target.searchParams.set('product',product);target.searchParams.set('release',release);target.searchParams.set('annotations',String(annotationsVisible));target.searchParams.set('notesExpanded',String(notesExpanded));if(review)target.searchParams.set('mode','review');frame.src=target.href;
     buttons.share.hidden=review||release==='all';const address=url(location.href);if(review)address.searchParams.set('mode','review');history.replaceState(null,'',address);
   }
+  window.addEventListener('message',e=>{if(e.source!==frame.contentWindow||e.data?.type!=='prototype-order-tab'||!['youpin-orders','youpin-services','youpin-service-detail'].includes(pageId))return;if(!['all','pay','ship','receive','done','closed','timeout','audit','accepting','confirm','remit','send','processing','finished','rejected','cancelled'].includes(e.data.tab))return;q.set('tab',e.data.tab);history.replaceState(null,'',url(location.href));});
+  const serviceStateKey='prototype-service-state-v1:'+new URL('./',location.href).href;
+  window.addEventListener('message',e=>{if(e.source!==frame.contentWindow||e.data?.type!=='prototype-service-submit')return;const value=e.data.value;if(!value||!/^service-\d+$/.test(value.id)||!['processing','remit'].includes(value.state))return;try{const saved=JSON.parse(localStorage.getItem(serviceStateKey)||'{}');saved[value.id]=value;localStorage.setItem(serviceStateKey,JSON.stringify(saved));frame.contentWindow.postMessage({type:'prototype-service-result',ok:true,id:value.id,state:value.state},'*');}catch{frame.contentWindow.postMessage({type:'prototype-service-result',ok:false},'*');}});
   function send(action){frame.contentWindow.postMessage({type:'prototype-v3-command',action},'*');}
   let dirty=false,editing=false,syncBusy=false,syncTimeout;
   const store=window.prototypeStore;
