@@ -433,14 +433,14 @@ window.prototypeAnnotations = {
         }
       },
       {
-        "uid": "f6b875e0-fea4-4185-8fcb-2b7b66a46689",
-        "id": "3",
-        "anchor": "#after-sales-rows > tr:nth-of-type(2) > td:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+        "uid": "295b29bc-0d1a-4cd2-8f6a-bb4c4d48e98d",
+        "id": "1",
+        "anchor": "#appeal-pjt-upload",
         "rect": {
-          "x": -0.12777777777777777,
-          "y": -0.4107142857142857,
-          "w": 1.1944444444444444,
-          "h": 1.7321428571428572
+          "x": -0.04968944099378883,
+          "y": -0.2977430555555556,
+          "w": 1.132919254658385,
+          "h": 1.4722222222222219
         }
       }
     ],
@@ -448,6 +448,11 @@ window.prototypeAnnotations = {
       {
         "uid": "e18f3f35-89d6-4441-8dc8-4a609e8b5259",
         "id": "3",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "29da0adf-366d-41e1-8e83-9fdb73ace566",
+        "id": "1",
         "content": "<p></p>"
       }
     ]
