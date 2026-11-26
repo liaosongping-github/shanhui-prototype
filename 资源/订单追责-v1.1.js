@@ -46,6 +46,9 @@ const records = Array.from({length:500}, (_, i) => {
   const day = String(i % 30 + 1).padStart(2, '0');
   row['下单时间'] = `2026-11-${day} 10:00:00`;
   row['进入追责时间'] = `2026-11-${day} 12:00:00`;
+  if (i === 1) {
+    Object.assign(row, {thirdPartyPush: true, '代理商': '咸鱼上门竞价', '实际差错价': '100.00', '条码': 'TCB2026102950017-599', '重大差错项': '面容不正常，光线/距离…'});
+  }
   return row;
 });
 let visible = records;
@@ -265,14 +268,15 @@ function openSinglePush(row, detailDialog) {
     } else if (control.tagName === 'TEXTAREA') control.rows = 2;
     if (name === '退差金额') { control.type='number'; control.step='0.01'; control.min='0'; }
     if (name === '全程视频链接') control.placeholder = '请输入全程视频链接';
-    if (name === '追责原因') { control.readOnly=true; control.style.background='#f5f7fa'; }
-    control.value = name === '追责原因' ? (row[name] || '') : (saved?.[name] || '');
+    if (name === '追责原因') { control.readOnly=true; control.style.background='#f5f7fa'; control.placeholder='—'; }
+    control.value = name === '追责原因' ? (row[name] === '—' ? '' : row[name] || '') : (saved?.[name] || '');
     controls[name]=control; label.append(caption,control); third.append(label);
   }
   content.append(identity,normal,third);
-  let isThird = Boolean(saved);
+  const fixedThird = row.thirdPartyPush === true;
+  let isThird = fixedThird || Boolean(saved);
   const buttons = [];
-  const modal = openPrototypeModal({title:'推送',content,width:900,onConfirm(api) {
+  const modal = openPrototypeModal({title:'推送',content,width:fixedThird ? 770 : 900,onConfirm(api) {
     if (!isThird && !normal.querySelector('input:checked')) { api.setMessage('请至少选择一个推送角色'); return false; }
     if (isThird) {
       for (const name of required) {
@@ -300,7 +304,9 @@ function openSinglePush(row, detailDialog) {
   modal.element.classList.add('single-push-modal');
   const panel = document.createElement('div'); panel.className = 'single-push-panel';
   while (modal.element.firstChild) panel.append(modal.element.firstChild);
-  modal.element.append(switcher, panel);
+  if (fixedThird) modal.element.classList.add('fixed-third-push');
+  else modal.element.append(switcher);
+  modal.element.append(panel);
   const draft = document.createElement('button'); draft.type='button'; draft.textContent='暂存草稿';
   draft.onclick=()=>{
     try {

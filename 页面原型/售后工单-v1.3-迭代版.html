@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>售后工单 · V1.2</title>
+  <link rel="stylesheet" href="../设计规范/基础样式-v1.css">
+  <link rel="stylesheet" href="../通用组件/原型导航-v1.css">
+  <link rel="stylesheet" href="../通用组件/改动评审-v1.css">
+  <link rel="stylesheet" href="../通用组件/手动标注-v3.css">
+  <link rel="stylesheet" href="../通用组件/业务顶栏-v1.css">
+  <link rel="stylesheet" href="../资源/售后工单-v1.3.css">
+  <link rel="stylesheet" href="../通用组件/图片预览-v1.css">
+</head>
+<body class="after-sales-page">
+  <div class="shell">
+    <aside id="boss-sidebar" data-prototype-navigation></aside>
+    <main class="boss-main">
+      <header class="boss-top"></header>
+      <div class="after-sales-content">
+        <div class="breadcrumb">
+          销售管理 &gt; <strong>售后工单</strong>
+          <button type="button" id="favorite" class="after-sales-favorite" aria-pressed="false">☆ 收藏</button>
+        </div>
+
+        <section class="after-sales-filter-panel" aria-label="售后工单查询条件">
+          <form id="query-form" class="after-sales-filter-grid">
+            <div class="after-sales-filter-row date-row">
+              <label class="after-sales-field"><span>条码</span><input id="barcode" name="barcode" placeholder="请扫描机器条码"></label>
+              <label class="after-sales-field"><span>实物码</span><input id="physical-code" name="physicalCode"></label>
+              <label class="after-sales-field"><span>IMEI</span><input id="imei" name="imei" inputmode="numeric"></label>
+              <label class="after-sales-field"><span>单据日期</span><span class="after-sales-date-range"><input id="date-start" name="dateStart" type="datetime-local" step="1" value="2026-10-18T23:59:59" aria-label="单据开始时间"><em>·</em><input id="date-end" name="dateEnd" type="datetime-local" step="1" value="2026-11-17T23:59:59" aria-label="单据结束时间"></span></label>
+              <label class="after-sales-field"><span>售后单号</span><input id="after-sales-no" name="afterSalesNo"></label>
+            </div>
+            <div class="after-sales-filter-row">
+              <label class="after-sales-field"><span>顾客名称</span><input id="customer-name" name="customerName"></label>
+              <label class="after-sales-field"><span>客户名称</span><input id="buyer-name" name="buyerName"></label>
+              <label class="after-sales-field"><span>手机号</span><input id="phone" name="phone"></label>
+              <label class="after-sales-field"><span>第三方单号</span><input id="third-party-order" name="thirdPartyOrder"></label>
+            </div>
+            <div class="after-sales-filter-row">
+              <label class="after-sales-field"><span>出库单位</span><select id="outbound-unit" name="outboundUnit"><option value="">请选择</option><option>闪回收总仓</option><option>京东POP店</option><option>优品事业部</option><option>京东代销仓</option></select></label>
+              <label class="after-sales-field"><span>出库单号</span><input id="outbound-no" name="outboundNo"></label>
+              <label class="after-sales-field"><span>来源</span><select id="source" name="source"><option value="">请选择</option><option>闪云拍卖后</option><option>售后留言</option><option>第三方售后</option></select></label>
+              <label class="after-sales-field"><span>销售平台</span><select id="sales-platform" name="salesPlatform"><option value="">请选择</option><option>京东</option><option>拍拍</option><option>支付宝商城</option><option>闪回收</option></select></label>
+            </div>
+            <div class="after-sales-filter-row">
+              <label class="after-sales-field"><span>平台收货单号</span><input id="platform-receipt" name="platformReceipt"></label>
+              <label class="after-sales-field"><span>买家退货单号</span><input id="buyer-return" name="buyerReturn"></label>
+              <label class="after-sales-field"><span>买家退货单号为空</span><select id="buyer-return-empty" name="buyerReturnEmpty"><option value="">请选择</option><option>是</option><option>否</option></select></label>
+              <label class="after-sales-field"><span>状态</span><select id="status" name="status"><option value="">请选择</option><option>待总部处理</option><option>客户确认</option><option>待检测</option><option>待检测审核</option><option>已完成</option></select></label>
+            </div>
+            <div class="after-sales-filter-row">
+              <label class="after-sales-field"><span>实物状态</span><select id="physical-status" name="physicalStatus"><option value="">请选择</option><option>已收货</option><option>待收货</option><option>已出库</option></select></label>
+              <label class="after-sales-field"><span>售后方式</span><select id="after-sales-method" name="afterSalesMethod"><option value="">请选择</option><option>调价</option><option>退货</option><option>补差</option></select></label>
+              <label class="after-sales-field"><span>销售类型</span><select id="sales-type" name="salesType"><option value="">请选择</option><option>零售</option><option>批发</option><option>回收</option></select></label>
+              <label class="after-sales-field"><span>是否装箱</span><select id="packed" name="packed"><option value="">请选择</option><option>是</option><option>否</option></select></label>
+            </div>
+            <div class="after-sales-filter-row">
+              <label class="after-sales-field"><span>是否绿通售后</span><select id="green-channel" name="greenChannel"><option value="">请选择</option><option>是</option><option>否</option></select></label>
+              <label class="after-sales-field"><span>是否严选订单</span><select id="strict-order" name="strictOrder"><option value="">请选择</option><option>是</option><option>否</option></select></label>
+              <label class="after-sales-field"><span>议价次数</span><select id="bargain-count" name="bargainCount"><option value="">请选择</option><option>0</option><option>1</option><option>2次及以上</option></select></label>
+              <label class="after-sales-field"><span>调价金额</span><select id="adjust-amount" name="adjustAmount"><option value="">请选择</option><option>100元以下</option><option>100-500元</option><option>500元以上</option></select></label>
+            </div>
+            <div class="after-sales-filter-row">
+              <label class="after-sales-field"><span>三方差价</span><select id="third-difference" name="thirdDifference"><option value="">请选择</option><option>有差价</option><option>无差价</option></select></label>
+              <label class="after-sales-field"><span>渠道类型</span><select id="channel-type" name="channelType"><option value="">请选择</option><option>回收渠道</option><option>销售渠道</option><option>三方渠道</option></select></label>
+              <label class="after-sales-field"><span>三方原始单号</span><input id="third-original-order" name="thirdOriginalOrder"></label>
+            </div>
+
+            <div class="after-sales-actions" role="group" aria-label="售后工单操作">
+              <button type="submit" class="action-next">查询</button>
+              <button type="button" class="action-muted with-icon" data-pending="导出"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m-3-3 3 3 3-3M3 11v3h10v-3"/></svg>导出</button>
+              <button type="button" class="action-muted with-icon" data-pending="导出全部"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m-3-3 3 3 3-3M3 11v3h10v-3M5 5l3 3 3-3"/></svg>导出全部</button>
+              <button type="button" data-pending="售后批收货">售后批收货</button>
+              <button type="button" class="action-add" data-pending="新增售后单">新增售后单</button>
+              <button type="button" data-pending="批量调价">批量调价</button>
+              <button type="button" data-pending="批量总部处理">批量总部处理</button>
+              <button type="button" data-pending="批量总部审核">批量总部审核</button>
+              <button type="button" data-pending="批量售后确认">批量售后确认</button>
+              <button type="button" data-pending="售后确认验证明细">售后确认验证明细</button>
+              <button type="button" data-pending="同步生成调价单">同步生成调价单</button>
+              <button type="button" data-pending="售后差异项配置">售后差异项配置</button>
+              <button type="button" data-pending="售后原因配置">售后原因配置</button>
+              <button type="button" data-pending="售后时效配置">售后时效配置</button>
+              <button type="button" data-pending="拍机堂询价">拍机堂询价</button>
+              <button type="button" data-pending="一键推送补差">一键推送补差</button>
+              <button type="button" data-pending="售后说明展示">售后说明展示</button>
+              <button type="button" data-pending="拍机堂询价选项">拍机堂询价选项</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="after-sales-workspace" aria-label="售后工单列表">
+          <div class="after-sales-tabs">
+            <div class="after-sales-tab-row" role="tablist" aria-label="业务来源">
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="true" data-tab="全部">全部<span class="tab-dot" aria-hidden="true"></span></button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="严选订单">严选订单</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="实时竞拍">实时竞拍</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="闪优优">闪优优</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="转转">转转</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="2B销售">2B销售</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="2C销售">2C销售</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="拍机堂">拍机堂</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="95分销售平台">95分销售平台</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="支付宝商城">支付宝商城</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="批发销售">批发销售</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-tab="聚水潭">聚水潭</button>
+            </div>
+            <div class="after-sales-tab-row" role="tablist" aria-label="售后类型">
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="true" data-subtab="全部">全部</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-subtab="售后留言">售后留言</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-subtab="其它">其它</button>
+              <button type="button" class="after-sales-tab" role="tab" aria-selected="false" data-subtab="测试tab">测试tab</button>
+            </div>
+          </div>
+          <div class="after-sales-table-wrap">
+            <div class="after-sales-table-scroll" tabindex="0" role="region" aria-label="售后工单表格，可横向滚动">
+              <table class="after-sales-table">
+                <colgroup id="after-sales-columns"></colgroup>
+                <thead>
+                  <tr id="after-sales-head"></tr>
+                </thead>
+                <tbody id="after-sales-rows"></tbody>
+              </table>
+            </div>
+            <div id="pagination" class="prototype-pagination after-sales-pagination"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="../通用组件/业务顶栏-v1.js"></script>
+  <script src="../资源/原型配置.js"></script>
+  <script src="../通用组件/原型导航-v2.js"></script>
+  <script src="../通用组件/分页-v1.js"></script>
+  <script src="../通用组件/全局消息-v1.js"></script>
+  <script src="../通用组件/弹窗-v1.js"></script>
+  <script src="../通用组件/图片预览-v1.js"></script>
+  <script src="../资源/售后申诉审核-v1.3.js"></script>
+  <script src="../资源/售后检测报告-v1.3.js"></script>
+  <script src="../资源/售后工单-v1.3.js"></script>
+  <script src="../资源/原型标注.js"></script>
+  <script src="../通用组件/图文编辑-v3.js"></script>
+  <script src="../通用组件/标注存储-v1.js"></script>
+  <script src="../通用组件/手动标注-v3.js"></script>
+</body>
+</html>

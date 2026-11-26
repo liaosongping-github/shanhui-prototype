@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PJT 截图上传</title>
+<style>
+body{margin:0;background:#f3f6f4;color:#172820;font:16px/1.5 "Microsoft YaHei",sans-serif}
+.shell{display:flex;min-height:100vh}
+.pjt-stage{min-width:0;flex:1}
+.pjt-phone{box-sizing:border-box;width:min(100%,402px);min-height:min(780px,100vh);margin:auto;background:#f3f6f4}
+.pjt-wechat{text-align:center;padding:20px 16px;background:#fff;border-bottom:1px solid #dce6df}
+.pjt-wechat h1{margin:0;font-size:20px;line-height:1.4}
+.pjt-stage main{padding:16px}
+.pjt-stage form{display:grid;gap:10px}
+.pjt-panel{min-width:0;padding:10px 12px;background:#fff;border:1px solid #dce6df;border-radius:16px}
+.pjt-photo-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;margin-bottom:4px}
+.pjt-photo-heading label,.pjt-panel > label{font-weight:600}
+.pjt-stage form button{min-height:44px;border-radius:8px;font:inherit;cursor:pointer}
+.pjt-stage [id^="replace-photo"]{padding:0 12px;border:1px solid #c9ded1;background:#f3f6f4;color:#087443;font-size:14px}
+.pjt-stage [id^="replace-photo"]:hover:not(:disabled){background:#e6f2eb}
+.pjt-stage #send{min-height:48px;border:0;background:#087443;color:#fff;font-weight:600}
+.pjt-stage #send:hover:not(:disabled){background:#065e36}
+.pjt-stage form button:disabled{opacity:.55;cursor:default}
+.pjt-file{position:absolute;width:1px;height:1px;opacity:0}
+.pjt-stage form :focus-visible,.pjt-file:focus-visible ~ .pjt-photo-box .pjt-photo{outline:2px solid #087443;outline-offset:3px}
+.pjt-photo{cursor:pointer;display:grid;place-items:center;min-height:80px;padding:6px;border:1px dashed #9bb3a5;border-radius:12px;background:#f3f6f4;color:#087443;text-align:center}
+.pjt-file:disabled ~ .pjt-photo-box .pjt-photo{cursor:default}
+.pjt-photo:has(img:not([hidden])){border-style:solid;border-color:#dce6df}
+.pjt-photo:has(img:not([hidden])) span{display:none}
+.pjt-photo [id^="preview"]{width:100%;height:88px;object-fit:contain}
+.pjt-stage form .pjt-photo[hidden]{display:none}
+.pjt-stage form [id^="view-photo"]{width:100%;border:1px solid #dce6df;cursor:zoom-in}
+.pjt-image-dialog{box-sizing:border-box;position:fixed;inset:0;margin:0;width:100%;height:100%;max-width:none;max-height:none;border:0;padding:48px 12px 12px;background:#121614;color:#fff}
+.pjt-image-dialog[open]{display:grid;place-items:center}
+.pjt-image-dialog img{max-width:100%;max-height:100%;min-height:0;object-fit:contain}
+.pjt-image-dialog button{position:absolute;top:8px;right:12px;min-height:36px;padding:0 12px;background:#fff;border:0;border-radius:6px;color:#172820}
+[id^="ocr-status"]:not(:empty){display:block;margin-top:12px;padding:8px 12px;border-radius:8px;background:#eaf4ee;color:#25573c;font-size:13px}
+.pjt-amount{display:flex;align-items:center;gap:8px;margin-top:8px;padding:0 12px;border:1px solid #b6c7bd;border-radius:8px;color:#4b6154}
+.pjt-amount:focus-within{outline:2px solid #087443;outline-offset:2px}
+.pjt-stage .pjt-amount input{box-sizing:border-box;min-width:0;min-height:48px;flex:1;padding:8px 0;border:0;background:transparent;color:#172820;font:inherit;font-size:18px;font-variant-numeric:tabular-nums;outline:none}
+.pjt-amount input::placeholder{color:#52675b;font-size:14px}
+#status{margin:12px 0 0;color:#4b6154;font-size:13px}
+@media(min-width:500px){
+  .pjt-phone{margin:16px auto;border:1px solid #dce6df;border-radius:20px;overflow:hidden}
+}
+.pjt-photo-box{position:relative}
+.pjt-stage form .pjt-remove-photo{position:absolute;top:-6px;right:-6px;width:32px;height:32px;min-height:0;padding:0;border:0;border-radius:50%;background:#d83f4b;color:#fff;font-size:20px;line-height:1}
+</style>
+<div class="shell">
+<aside data-prototype-navigation hidden></aside>
+<div class="pjt-stage">
+<div class="pjt-phone">
+<header class="pjt-wechat"><h1>PJT 截图上传</h1></header>
+<main>
+<form>
+<section class="pjt-panel" aria-labelledby="photo-label">
+<input id="photo" type="file" accept="image/png,image/jpeg,image/webp" class="pjt-file">
+<div class="pjt-photo-heading">
+<label id="photo-label" for="photo">截图一</label>
+<button id="replace-photo" type="button" hidden>替换截图</button>
+</div>
+<div class="pjt-photo-box">
+<label id="choose" class="pjt-photo" for="photo"><span>选择截图</span></label>
+<button type="button" id="view-photo" class="pjt-photo" aria-label="全屏查看截图" hidden>
+<img id="preview" alt="已选截图" hidden></button>
+<button type="button" class="pjt-remove-photo" aria-label="删除截图" hidden>×</button>
+</div>
+<span id="ocr-status" role="status"></span>
+</section>
+<div class="pjt-panel">
+<label for="amount">预估补差金额</label>
+<div class="pjt-amount"><input id="amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="请输入金额" aria-describedby="amount-unit"><span id="amount-unit">元</span></div>
+</div>
+<button id="send" type="submit" disabled>提交</button>
+</form>
+<dialog class="pjt-image-dialog" id="image-dialog" aria-label="截图预览">
+  <form method="dialog"><button type="submit">关闭</button></form>
+  <img alt="截图大图">
+</dialog>
+<p id="status" role="status"></p>
+</main>
+</div>
+</div>
+</div>
+<script>
+const amount = document.querySelector('#amount');
+const imageDialog = document.querySelector('#image-dialog');
+const send = document.querySelector('#send');
+const status = document.querySelector('#status');
+const params = new URLSearchParams(location.search);
+const session = params.get('session');
+const inConsole = !session && params.get('toolbar') === 'parent';
+const form = document.querySelector('form');
+const firstPanel = document.querySelector('[aria-labelledby="photo-label"]');
+const panels = [firstPanel];
+if (params.get('count') === '2') {
+  const secondPanel = firstPanel.cloneNode(true);
+  for (const element of secondPanel.querySelectorAll('[id]')) element.id += '-2';
+  for (const label of secondPanel.querySelectorAll('label')) label.htmlFor += '-2';
+  secondPanel.setAttribute('aria-labelledby', 'photo-label-2');
+  secondPanel.querySelector('#photo-label-2').textContent = '截图二';
+  firstPanel.after(secondPanel);
+  panels.push(secondPanel);
+}
+const photos = panels.map(panel => panel.querySelector('.pjt-file'));
+const replacements = panels.map(panel => panel.querySelector('button[id^="replace-photo"]'));
+const recognized = new Set();
+function setSubmitting(disabled) {
+  for (const input of [...photos, ...replacements, ...form.querySelectorAll('.pjt-remove-photo'), amount, send]) input.disabled = disabled;
+}
+window.addEventListener('message', event => {
+  if (!session && event.source === window.opener && event.data?.type === 'pjt-preview-received') {
+    status.textContent = '已上传网页，并保存了PJT截图信息';
+    setSubmitting(true);
+  }
+});
+panels.forEach((panel, index) => {
+  const photo = photos[index];
+  const replace = replacements[index];
+  const preview = panel.querySelector('img');
+  const choose = panel.querySelector('.pjt-photo:is(label)');
+  const view = panel.querySelector('.pjt-photo:is(button)');
+  const ocr = panel.querySelector('[role="status"]');
+  const remove = panel.querySelector('.pjt-remove-photo');
+  remove.setAttribute('aria-label', index === 0 ? '删除截图一' : '删除截图二');
+  let previewUrl, timer;
+  replace.onclick = () => photo.click();
+  view.onclick = () => {
+    imageDialog.querySelector('img').src = preview.src;
+    imageDialog.showModal();
+  };
+  remove.onclick = () => {
+    photo.value = '';
+    photo.dispatchEvent(new Event('change'));
+    photo.focus();
+  };
+  photo.onchange = () => {
+    clearTimeout(timer);
+    recognized.delete(index);
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    const file = photo.files[0];
+    const valid = file && ['image/png','image/jpeg','image/webp'].includes(file.type) && file.size > 0 && file.size <= 10 * 1024 * 1024;
+    preview.hidden = view.hidden = replace.hidden = remove.hidden = !valid;
+    choose.hidden = Boolean(valid);
+    send.disabled = true;
+    amount.value = '';
+    ocr.textContent = valid ? 'OCR识别中…' : '';
+    status.textContent = file && !valid ? '请选择 10 MB 以内的 PNG、JPEG 或 WebP 图片。' : '';
+    if (!valid) return;
+    preview.src = previewUrl = URL.createObjectURL(file);
+    timer = setTimeout(() => {
+      recognized.add(index);
+      ocr.textContent = 'OCR已识别 · 识别金额 100.99 元';
+      if (recognized.size === panels.length) {
+        amount.value = '20.00';
+        send.disabled = false;
+      }
+    }, 1000);
+  };
+});
+document.querySelector('form').onsubmit = async event => {
+  event.preventDefault();
+  if (send.disabled) return;
+  const images = photos.map(photo => photo.files[0]);
+  if (!session) {
+    if (window.opener && !window.opener.closed) {
+      window.opener.postMessage({type:'pjt-preview-submit', images, amount:amount.value}, '*');
+      status.textContent = '等待电脑端确认。';
+    } else {
+      status.textContent = '请从工单的「演示手机扫码跳转到H5页面」进入，提交后即可回填。';
+    }
+    return;
+  }
+  setSubmitting(true);
+  status.textContent = '正在发送…';
+  try {
+    for (const [index, image] of images.entries()) {
+      const query = new URLSearchParams({session, slot: String(index + 1), amount: amount.value});
+      const response = await fetch('/upload?' + query, {method:'POST',body:image});
+      if (response.status === 410) {
+        status.textContent = '二维码已失效，请在电脑端重新扫码。';
+        return;
+      }
+      if (!response.ok) throw new Error();
+    }
+    status.textContent = '已上传网页，并保存了PJT截图信息';
+  } catch {
+    status.textContent = '发送失败，请检查网络后重试。';
+    setSubmitting(false);
+  }
+};
+if (!session) {
+  const canPreview = inConsole || params.get('preview') === '1';
+  photos.forEach(photo => { photo.disabled = !canPreview; });
+  if (!canPreview) status.textContent = '请扫描电脑端显示的二维码进入。';
+}
+if (inConsole) {
+  const navigation = document.querySelector('[data-prototype-navigation]');
+  navigation.hidden = false;
+  for (const path of ['../通用组件/原型导航-v1.css', '../通用组件/改动评审-v1.css', '../通用组件/手动标注-v3.css']) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = path;
+    document.head.append(link);
+  }
+  for (const path of ['../资源/原型配置.js', '../通用组件/原型导航-v2.js', '../资源/原型标注.js', '../通用组件/图文编辑-v3.js', '../通用组件/标注存储-v1.js', '../通用组件/手动标注-v3.js']) {
+    const script = document.createElement('script');
+    script.async = false;
+    script.src = path;
+    document.body.append(script);
+  }
+}
+</script>
+</html>

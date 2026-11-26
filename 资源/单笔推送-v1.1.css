@@ -33,3 +33,16 @@
 .order-review-preview { position: relative; width: 72px; height: 54px; }
 .order-review-preview img { width: 100%; height: 100%; object-fit: contain; }
 .order-review-preview button { position: absolute; top: 0; right: 0; padding: 1px 5px; }
+
+.prototype-modal.fixed-third-push { margin: 0 auto; max-height: min(574px, 100dvh); }
+.fixed-third-push .single-push-panel { display: flex; flex-direction: column; max-height: min(574px, 100dvh); overflow: hidden; }
+.fixed-third-push .prototype-modal-head { padding: 10px 20px 14px 10px; }
+.fixed-third-push .prototype-modal-body { min-height: 0; max-height: none; overflow-y: auto; padding: 10px 26px 0; }
+.fixed-third-push .prototype-modal-footer { flex: none; padding: 0 20px 16px; gap: 8px; }
+.fixed-third-push .single-push-summary { grid-template-columns: minmax(0, 228px) minmax(0, 1fr); padding: 8px 16px 16px; margin-bottom: 0; font-size: 14px; }
+.fixed-third-push label { padding-inline: 8px; color: #606266; }
+.fixed-third-push label > :is(input, select) { height: 36px; padding: 0 10px !important; }
+.fixed-third-push label > textarea { min-height: 53px; }
+@media (max-width: 600px) {
+  .fixed-third-push .single-push-summary { grid-template-columns: 1fr; }
+}

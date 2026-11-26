@@ -77,12 +77,28 @@ window.prototypeAnnotations = {
           "w": 1.1911764705882353,
           "h": 1.2727272727272727
         }
+      },
+      {
+        "uid": "51cd19c1-c0d2-449f-92a4-599826f87648",
+        "id": "2",
+        "anchor": "#rows > tr:nth-of-type(2) > td:nth-of-type(2) > button:nth-of-type(5)",
+        "rect": {
+          "x": -0.16666666666666666,
+          "y": -0.2545454545454545,
+          "w": 1.4166666666666667,
+          "h": 1.5272727272727273
+        }
       }
     ],
     "cards": [
       {
         "uid": "99dfd18f-8d93-42da-8dd6-1498144947a2",
         "id": "5",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "a8d714cc-0d4d-441f-95a1-55a0cd04b9cb",
+        "id": "2",
         "content": "<p></p>"
       }
     ]
@@ -380,5 +396,64 @@ window.prototypeAnnotations = {
         "content": "<p></p>"
       }
     ]
+  },
+  "after-sales-orders@v1.3": {
+    "boxes": [
+      {
+        "uid": "bfcd36dd-dd20-40dc-b763-893a2ccb2bd5",
+        "id": "3",
+        "anchor": "#prototype-dialog > form:nth-of-type(1) > div:nth-of-type(9) > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(1)",
+        "rect": {
+          "x": -3.2264539930555554,
+          "y": -0.32091172214182345,
+          "w": 7.534722222222222,
+          "h": 1.6903039073806079
+        }
+      },
+      {
+        "uid": "5dda2e4f-30b5-48b4-9282-b944af5ae02a",
+        "id": "3",
+        "anchor": "#after-sales-rows > tr:nth-of-type(1) > td:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+        "rect": {
+          "x": -0.10555555555555556,
+          "y": -0.21428571428571427,
+          "w": 1.1722222222222223,
+          "h": 1.375
+        }
+      },
+      {
+        "uid": "6041e875-b6f8-4502-ac6c-93f071532ed1",
+        "id": "3",
+        "anchor": "#imei",
+        "rect": {
+          "x": -0.30272527707875996,
+          "y": -0.2222222222222222,
+          "w": 1.3569631097071264,
+          "h": 1.375
+        }
+      },
+      {
+        "uid": "f6b875e0-fea4-4185-8fcb-2b7b66a46689",
+        "id": "3",
+        "anchor": "#after-sales-rows > tr:nth-of-type(2) > td:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+        "rect": {
+          "x": -0.12777777777777777,
+          "y": -0.4107142857142857,
+          "w": 1.1944444444444444,
+          "h": 1.7321428571428572
+        }
+      }
+    ],
+    "cards": [
+      {
+        "uid": "e18f3f35-89d6-4441-8dc8-4a609e8b5259",
+        "id": "3",
+        "content": "<p></p>"
+      }
+    ]
+  },
+  "orders@v1.3": {
+    "boxes": [],
+    "cards": []
   }
 };

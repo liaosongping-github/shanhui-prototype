@@ -1,0 +1,36 @@
+.return-page { background: #f6f6f6; }
+.return-page .filters, .return-pagination { background: #e3e8f1; }
+.return-fields { display: grid; grid-template-columns: repeat(5, minmax(180px, 1fr)); gap: 10px 14px; }
+.return-fields label { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.return-fields label > span:first-child { width: 7em; text-align: right; flex: none; }
+.return-fields input, .return-fields select, .return-pagination select {
+  min-width: 0; height: 28px; border: 1px solid #d6dce7; border-radius: 4px;
+  background: #fff; padding: 0 8px; color: #606266; font: inherit;
+}
+.return-fields input, .return-fields select { flex: 1; }
+.return-fields .return-dates { grid-column: span 2; }
+.return-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 11px; }
+.return-page button { cursor: pointer; }
+.return-page button:disabled { cursor: default; opacity: .48; }
+.return-page .return-btn { border: 0; border-radius: 3px; background: #409eff; color: white; min-height: 28px; padding: 0 15px; font: inherit; font-weight: 600; white-space: nowrap; }
+.return-page .return-btn.gray { background: #909399; }
+.return-page .return-btn.red { background: #f56c6c; }
+.return-scroll { overflow-x: auto; }
+.return-table { min-width: 1835px; table-layout: fixed; border-collapse: separate; border-spacing: 0; }
+.return-table th, .return-table td { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border: 0; border-right: 1px solid #e5eaf3; border-bottom: 1px solid #e5eaf3; padding: 6px 10px; height: 40px; text-align: left; }
+.return-table th { height: 36px; border-top: 1px solid #e5eaf3; color: #909399; }
+.return-table th:first-child, .return-table td:first-child:not([colspan]) { position: sticky; left: 0; z-index: 2; background: #fff; border-left: 1px solid #e5eaf3; overflow: visible; }
+.return-table tbody tr:hover td { background: #f4f6f9; }
+.return-table .return-selection { width: 14px; height: 14px; margin: 0 8px 0 0; vertical-align: middle; }
+.return-table .return-btn { margin-right: 8px; }
+.return-pagination { display: flex; align-items: center; gap: 14px; padding: 16px 20px; }
+.return-pagination nav button { background: #fff; border: 0; min-width: 34px; height: 28px; }
+.return-pagination [aria-current="page"] { color: #409eff; font-weight: 700; }
+#return-dialog { border: 1px solid #d6dce7; border-radius: 6px; padding: 20px; color: #303133; max-width: min(650px, 90vw); }
+#return-dialog::backdrop { background: #0006; }
+#return-dialog dl { display: grid; grid-template-columns: 100px 1fr; gap: 8px; }
+#return-dialog dd { margin: 0; overflow-wrap: anywhere; }
+#return-message { display: block; color: #606266; margin-top: 8px; }
+@media (max-width: 1100px) {
+  .return-fields { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+}
