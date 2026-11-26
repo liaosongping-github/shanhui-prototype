@@ -453,7 +453,41 @@ window.prototypeAnnotations = {
     ]
   },
   "orders@v1.3": {
-    "boxes": [],
-    "cards": []
+    "boxes": [
+      {
+        "uid": "764c8008-5aa1-4514-a472-fc1e67b0f439",
+        "id": "1",
+        "anchor": "#rows > tr:nth-of-type(1) > td:nth-of-type(2) > button:nth-of-type(5)",
+        "rect": {
+          "x": -0.09523809523809523,
+          "y": -0.21818181818181817,
+          "w": 1.2142857142857142,
+          "h": 1.4
+        }
+      },
+      {
+        "uid": "6c3fd997-ff26-4ba6-b506-63795d477420",
+        "id": "2",
+        "anchor": "#rows > tr:nth-of-type(4) > td:nth-of-type(2) > button:nth-of-type(5)",
+        "rect": {
+          "x": -0.19047619047619047,
+          "y": -0.36363636363636365,
+          "w": 1.3452380952380953,
+          "h": 1.7272727272727273
+        }
+      }
+    ],
+    "cards": [
+      {
+        "uid": "7d5134d7-ba1f-4e13-af97-2eef43fb9afd",
+        "id": "1",
+        "content": "<p></p>"
+      },
+      {
+        "uid": "b0af5047-a79e-48be-b2d5-b0d8d35d36b1",
+        "id": "2",
+        "content": "<p></p>"
+      }
+    ]
   }
 };

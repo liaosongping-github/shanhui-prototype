@@ -1,7 +1,7 @@
 window.prototypeConfig = {
   products: [{id:'boss',name:'BOSS系统'}, {id:'youpin',name:'闪回有品'}, {id:'boss-channel',name:'BOSS-渠道版'}, {id:'h5',name:'H5页面'}],
   releases: ['v1.1', 'v1.2', 'v1.3'],
-  releaseNames: { 'v1.1': '生态20261112', 'v1.2': '生态20261120', 'v1.3': 'v1.3' },
+  releaseNames: { 'v1.1': '生态20261112', 'v1.2': '生态20261120', 'v1.3': '生态20261126' },
   pages: [
     {
       id: 'orders', group: '商务处理', name: '订单追责', fresh: false,
